@@ -279,12 +279,12 @@ function DishCard({ dish, dataPath }: { dish: Dish; dataPath: string }) {
                             onClick={handleSelect}
                             className="px-3 py-1 bg-red-600 text-white rounded-md hover:bg-red-700 transition-colors"
                         >
-                            Select
+                            Chọn
                         </button>
                     </div>
                     {hasOptions && (
                         <div className="mt-2 text-xs text-gray-500">
-                            Has customization options
+                            Có tùy chọn thêm
                         </div>
                     )}
                 </div>
@@ -323,7 +323,7 @@ function DishCard({ dish, dataPath }: { dish: Dish; dataPath: string }) {
                                         {option.name}
                                         {option.min_select > 0 && (
                                             <span className="text-red-600 ml-1 text-sm">
-                                                *Required (Select {option.min_select}-{option.max_select})
+                                                *Bắt buộc (Chọn {option.min_select}-{option.max_select})
                                             </span>
                                         )}
                                     </h4>
@@ -359,7 +359,7 @@ function DishCard({ dish, dataPath }: { dish: Dish; dataPath: string }) {
                             ))}
 
                             <div className="mb-4">
-                                <h4 className="font-medium mb-2">Quantity</h4>
+                                <h4 className="font-medium mb-2">Số lượng</h4>
                                 <div className="flex items-center">
                                     <button
                                         onClick={() => setQuantity(prev => Math.max(1, prev - 1))}
@@ -394,7 +394,7 @@ function DishCard({ dish, dataPath }: { dish: Dish; dataPath: string }) {
                                 disabled={isSubmitting}
                                 className="w-full py-2 bg-red-600 text-white rounded hover:bg-red-700 disabled:opacity-50"
                             >
-                                {isSubmitting ? 'Adding...' : 'Add to Selection'}
+                                {isSubmitting ? 'Đang thêm...' : 'Thêm món này'}
                             </button>
                         </div>
                     </div>

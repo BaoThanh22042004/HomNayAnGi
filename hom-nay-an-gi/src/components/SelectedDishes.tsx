@@ -94,29 +94,29 @@ export default function SelectedDishes() {
     return (
         <div className="bg-white shadow-md rounded-lg overflow-hidden">
             <div className="bg-red-600 text-white px-4 py-3 flex justify-between items-center">
-                <h2 className="text-lg font-bold">Selected Dishes</h2>
+                <h2 className="text-lg font-bold">Món đã chọn</h2>
                 <span className="text-sm bg-white text-red-600 px-2 py-1 rounded-full">
-                    {selections.length} items
+                    {selections.length} món
                 </span>
             </div>
 
             {/* Show current user info */}
             <div className="bg-gray-50 p-3 border-b flex justify-between items-center">
                 <div className="text-sm">
-                    <span className="text-gray-600">You are: </span>
-                    <span className="font-medium">{currentClientName || 'Not set'}</span>
+                    <span className="text-gray-600">Bạn là: </span>
+                    <span className="font-medium">{currentClientName || 'Chưa đặt tên'}</span>
                 </div>
                 <button
                     onClick={handleNameChange}
                     className="text-xs text-blue-600 hover:underline"
                 >
-                    Change name
+                    Đổi tên
                 </button>
             </div>
 
             {loading && selections.length === 0 ? (
                 <div className="p-4 text-center text-gray-500">
-                    Loading selections...
+                    Đang tải danh sách món...
                 </div>
             ) : error ? (
                 <div className="p-4 text-center text-red-500">
@@ -124,7 +124,7 @@ export default function SelectedDishes() {
                 </div>
             ) : selections.length === 0 ? (
                 <div className="p-4 text-center text-gray-500">
-                    No dishes selected yet.
+                    Chưa có món nào được chọn.
                 </div>
             ) : (
                 <div>
@@ -150,13 +150,13 @@ export default function SelectedDishes() {
                                         </div>
 
                                         <div className="text-sm text-gray-500 mt-1">
-                                            Selected by: <span className="font-medium">{selection.clientName}</span>
-                                            {selection.clientName === currentClientName && ' (You)'}
+                                            Người chọn: <span className="font-medium">{selection.clientName}</span>
+                                            {selection.clientName === currentClientName && ' (Bạn)'}
                                         </div>
 
                                         {selection.quantity > 1 && (
                                             <div className="text-sm text-gray-500 mt-1">
-                                                Quantity: {selection.quantity}
+                                                Số lượng: {selection.quantity}
                                             </div>
                                         )}
 
@@ -177,7 +177,8 @@ export default function SelectedDishes() {
                                         <button
                                             onClick={() => removeSelection(selection.id)}
                                             className="text-gray-400 hover:text-red-500"
-                                            aria-label="Remove"
+                                            aria-label="Xóa"
+                                            title="Xóa món này"
                                         >
                                             <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
                                                 <path fillRule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 111.414 1.414L11.414 10l4.293 4.293a1 1 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clipRule="evenodd" />
@@ -191,7 +192,7 @@ export default function SelectedDishes() {
 
                     <div className="bg-gray-50 px-4 py-3 border-t">
                         <div className="flex justify-between items-center font-bold">
-                            <span>Total:</span>
+                            <span>Tổng cộng:</span>
                             <span className="text-red-600">{formatPrice(totalPrice)}</span>
                         </div>
                     </div>

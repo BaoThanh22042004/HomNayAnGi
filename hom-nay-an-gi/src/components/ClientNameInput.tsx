@@ -99,12 +99,12 @@ export default function ClientNameInput({
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
             <div className="bg-white rounded-lg max-w-md w-full p-6">
                 <h2 className="text-xl font-bold mb-4">
-                    {isUpdate ? 'Change Your Name' : 'Enter Your Name'}
+                    {isUpdate ? 'Đổi tên của bạn' : 'Nhập tên của bạn'}
                 </h2>
                 <p className="text-gray-600 mb-4">
                     {isUpdate
-                        ? 'Update your name so others know which dishes you selected.'
-                        : 'Please enter your name so others can see who selected which dishes.'}
+                        ? 'Cập nhật tên của bạn để mọi người biết ai đã chọn món nào.'
+                        : 'Vui lòng nhập tên của bạn để mọi người có thể biết ai đã chọn món nào.'}
                 </p>
 
                 <form onSubmit={handleSubmit}>
@@ -112,7 +112,7 @@ export default function ClientNameInput({
                         type="text"
                         value={name}
                         onChange={(e) => setName(e.target.value)}
-                        placeholder="Your name"
+                        placeholder="Tên của bạn"
                         className="w-full p-2 border border-gray-300 rounded mb-4"
                         required
                         autoFocus
@@ -132,7 +132,7 @@ export default function ClientNameInput({
                                 disabled={isSubmitting}
                                 className="flex-1 py-2 border border-gray-300 text-gray-700 rounded hover:bg-gray-100 disabled:opacity-50"
                             >
-                                Cancel
+                                Hủy bỏ
                             </button>
                         )}
 
@@ -141,7 +141,7 @@ export default function ClientNameInput({
                             disabled={isSubmitting}
                             className={`${isUpdate ? 'flex-1' : 'w-full'} py-2 bg-red-600 text-white rounded hover:bg-red-700 disabled:opacity-50`}
                         >
-                            {isSubmitting ? 'Updating...' : (isUpdate ? 'Update' : 'Save')}
+                            {isSubmitting ? 'Đang cập nhật...' : (isUpdate ? 'Cập nhật' : 'Lưu')}
                         </button>
                     </div>
                 </form>

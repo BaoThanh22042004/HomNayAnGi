@@ -7,6 +7,10 @@
         {
             "name": "Cơm Tấm Sà Bì Chưởng 15K",
             "data_path": "saBiTruong"
+        },
+        {
+            "name": "Cơm Gà Lê Trang - Quang Trung",
+            "data_path": "comGaLeTrang"
         }
     ]
 }

@@ -18,7 +18,7 @@ export async function generateStaticParams() {
 }
 
 export default async function EateryPage({ params }: EateryPageProps) {
-    const decodedDataPath = decodeURIComponent(params.dataPath);
+    const decodedDataPath = decodeURIComponent((await params).dataPath);
     const menuInfos = await getEateryMenu(decodedDataPath);
 
     // Get all eateries to find the current eatery name
