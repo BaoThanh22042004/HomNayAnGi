@@ -1,0 +1,12 @@
+{
+    "eateries": [
+        {
+            "name": "Mì trộn Mihi - Cơm Trộn, Ăn Vặt - Bờ Hồ Bún Xáng",
+            "data_path": "miTronMihi"
+        },
+        {
+            "name": "Cơm Tấm Sà Bì Chưởng 15K",
+            "data_path": "saBiTruong"
+        }
+    ]
+}

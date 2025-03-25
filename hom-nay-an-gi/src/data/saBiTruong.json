@@ -1,0 +1,2056 @@
+{
+  "menu_infos": [
+    {
+      "dish_type_id": 697194,
+      "dish_type_name": "Menu",
+      "dishes": [
+        {
+          "is_deleted": false,
+          "description": "",
+          "price": {
+            "text": "28.000đ",
+            "unit": "đ",
+            "value": 28000
+          },
+          "is_active": true,
+          "display_order": 0,
+          "total_like": "100+",
+          "properties": [],
+          "photos": [
+            {
+              "width": 120,
+              "value": "https://mms.img.susercontent.com/vn-11134517-7r98o-lqxhizcvo2ahe8@resize_ss120x120!@crop_w120_h120_cT",
+              "height": 120
+            },
+            {
+              "width": 180,
+              "value": "https://mms.img.susercontent.com/vn-11134517-7r98o-lqxhizcvo2ahe8@resize_ss180x180!@crop_w180_h180_cT",
+              "height": 180
+            },
+            {
+              "width": 400,
+              "value": "https://mms.img.susercontent.com/vn-11134517-7r98o-lqxhizcvo2ahe8@resize_ss400x400!@crop_w400_h400_cT",
+              "height": 400
+            },
+            {
+              "width": 560,
+              "value": "https://mms.img.susercontent.com/vn-11134517-7r98o-lqxhizcvo2ahe8@resize_ss560x560!@crop_w560_h560_cT",
+              "height": 560
+            },
+            {
+              "width": 750,
+              "value": "https://mms.img.susercontent.com/vn-11134517-7r98o-lqxhizcvo2ahe8@resize_ss750x750!@crop_w750_h750_cT",
+              "height": 750
+            },
+            {
+              "width": 1242,
+              "value": "https://mms.img.susercontent.com/vn-11134517-7r98o-lqxhizcvo2ahe8@resize_ss1242x1242!@crop_w1242_h1242_cT",
+              "height": 1242
+            }
+          ],
+          "options": [],
+          "is_available": true,
+          "is_group_discount_item": true,
+          "time": {
+            "available": [],
+            "week_days": [
+              {
+                "start": "00:00",
+                "week_day": 1,
+                "end": "23:59"
+              },
+              {
+                "start": "00:00",
+                "week_day": 2,
+                "end": "23:59"
+              },
+              {
+                "start": "00:00",
+                "week_day": 3,
+                "end": "23:59"
+              },
+              {
+                "start": "00:00",
+                "week_day": 4,
+                "end": "23:59"
+              },
+              {
+                "start": "00:00",
+                "week_day": 5,
+                "end": "23:59"
+              },
+              {
+                "start": "00:00",
+                "week_day": 6,
+                "end": "23:59"
+              },
+              {
+                "start": "00:00",
+                "week_day": 7,
+                "end": "23:59"
+              }
+            ],
+            "not_available": []
+          },
+          "quantity": 0,
+          "id": 7497557,
+          "mms_image": "vn-11134517-7r98o-lqxhizcvo2ahe8",
+          "name": "Cơm Gà Nướng Vĩ"
+        },
+        {
+          "is_deleted": false,
+          "description": "",
+          "price": {
+            "text": "28.000đ",
+            "unit": "đ",
+            "value": 28000
+          },
+          "is_active": true,
+          "display_order": 0,
+          "total_like": "100+",
+          "properties": [],
+          "photos": [
+            {
+              "width": 120,
+              "value": "https://mms.img.susercontent.com/vn-11134517-7r98o-lr2yjgdsk3wk51@resize_ss120x120!@crop_w120_h120_cT",
+              "height": 120
+            },
+            {
+              "width": 180,
+              "value": "https://mms.img.susercontent.com/vn-11134517-7r98o-lr2yjgdsk3wk51@resize_ss180x180!@crop_w180_h180_cT",
+              "height": 180
+            },
+            {
+              "width": 400,
+              "value": "https://mms.img.susercontent.com/vn-11134517-7r98o-lr2yjgdsk3wk51@resize_ss400x400!@crop_w400_h400_cT",
+              "height": 400
+            },
+            {
+              "width": 560,
+              "value": "https://mms.img.susercontent.com/vn-11134517-7r98o-lr2yjgdsk3wk51@resize_ss560x560!@crop_w560_h560_cT",
+              "height": 560
+            },
+            {
+              "width": 750,
+              "value": "https://mms.img.susercontent.com/vn-11134517-7r98o-lr2yjgdsk3wk51@resize_ss750x750!@crop_w750_h750_cT",
+              "height": 750
+            },
+            {
+              "width": 1242,
+              "value": "https://mms.img.susercontent.com/vn-11134517-7r98o-lr2yjgdsk3wk51@resize_ss1242x1242!@crop_w1242_h1242_cT",
+              "height": 1242
+            }
+          ],
+          "options": [],
+          "is_available": true,
+          "is_group_discount_item": true,
+          "time": {
+            "available": [],
+            "week_days": [
+              {
+                "start": "00:00",
+                "week_day": 1,
+                "end": "23:59"
+              },
+              {
+                "start": "00:00",
+                "week_day": 2,
+                "end": "23:59"
+              },
+              {
+                "start": "00:00",
+                "week_day": 3,
+                "end": "23:59"
+              },
+              {
+                "start": "00:00",
+                "week_day": 4,
+                "end": "23:59"
+              },
+              {
+                "start": "00:00",
+                "week_day": 5,
+                "end": "23:59"
+              },
+              {
+                "start": "00:00",
+                "week_day": 6,
+                "end": "23:59"
+              },
+              {
+                "start": "00:00",
+                "week_day": 7,
+                "end": "23:59"
+              }
+            ],
+            "not_available": []
+          },
+          "quantity": 0,
+          "id": 7903202,
+          "mms_image": "vn-11134517-7r98o-lr2yjgdsk3wk51",
+          "name": "Cơm Sà Bì Chưởng"
+        },
+        {
+          "is_deleted": false,
+          "description": "",
+          "price": {
+            "text": "35.000đ",
+            "unit": "đ",
+            "value": 35000
+          },
+          "is_active": true,
+          "display_order": 0,
+          "total_like": "100+",
+          "properties": [],
+          "photos": [
+            {
+              "width": 120,
+              "value": "https://mms.img.susercontent.com/vn-11134517-7r98o-lqxhwz16lms990@resize_ss120x120!@crop_w120_h120_cT",
+              "height": 120
+            },
+            {
+              "width": 180,
+              "value": "https://mms.img.susercontent.com/vn-11134517-7r98o-lqxhwz16lms990@resize_ss180x180!@crop_w180_h180_cT",
+              "height": 180
+            },
+            {
+              "width": 400,
+              "value": "https://mms.img.susercontent.com/vn-11134517-7r98o-lqxhwz16lms990@resize_ss400x400!@crop_w400_h400_cT",
+              "height": 400
+            },
+            {
+              "width": 560,
+              "value": "https://mms.img.susercontent.com/vn-11134517-7r98o-lqxhwz16lms990@resize_ss560x560!@crop_w560_h560_cT",
+              "height": 560
+            },
+            {
+              "width": 750,
+              "value": "https://mms.img.susercontent.com/vn-11134517-7r98o-lqxhwz16lms990@resize_ss750x750!@crop_w750_h750_cT",
+              "height": 750
+            },
+            {
+              "width": 1242,
+              "value": "https://mms.img.susercontent.com/vn-11134517-7r98o-lqxhwz16lms990@resize_ss1242x1242!@crop_w1242_h1242_cT",
+              "height": 1242
+            }
+          ],
+          "options": [],
+          "is_available": true,
+          "is_group_discount_item": true,
+          "time": {
+            "available": [],
+            "week_days": [
+              {
+                "start": "00:00",
+                "week_day": 1,
+                "end": "23:59"
+              },
+              {
+                "start": "00:00",
+                "week_day": 2,
+                "end": "23:59"
+              },
+              {
+                "start": "00:00",
+                "week_day": 3,
+                "end": "23:59"
+              },
+              {
+                "start": "00:00",
+                "week_day": 4,
+                "end": "23:59"
+              },
+              {
+                "start": "00:00",
+                "week_day": 5,
+                "end": "23:59"
+              },
+              {
+                "start": "00:00",
+                "week_day": 6,
+                "end": "23:59"
+              },
+              {
+                "start": "00:00",
+                "week_day": 7,
+                "end": "23:59"
+              }
+            ],
+            "not_available": []
+          },
+          "quantity": 0,
+          "id": 7497560,
+          "mms_image": "vn-11134517-7r98o-lqxhwz16lms990",
+          "name": "Cơm Sườn Muối Sả"
+        },
+        {
+          "is_deleted": false,
+          "description": "",
+          "price": {
+            "text": "20.000đ",
+            "unit": "đ",
+            "value": 20000
+          },
+          "is_active": true,
+          "display_order": 0,
+          "total_like": "100+",
+          "properties": [],
+          "photos": [
+            {
+              "width": 120,
+              "value": "https://mms.img.susercontent.com/vn-11134517-7ra0g-m6rx55jdz8s89e@resize_ss120x120!@crop_w120_h120_cT",
+              "height": 120
+            },
+            {
+              "width": 180,
+              "value": "https://mms.img.susercontent.com/vn-11134517-7ra0g-m6rx55jdz8s89e@resize_ss180x180!@crop_w180_h180_cT",
+              "height": 180
+            },
+            {
+              "width": 400,
+              "value": "https://mms.img.susercontent.com/vn-11134517-7ra0g-m6rx55jdz8s89e@resize_ss400x400!@crop_w400_h400_cT",
+              "height": 400
+            },
+            {
+              "width": 560,
+              "value": "https://mms.img.susercontent.com/vn-11134517-7ra0g-m6rx55jdz8s89e@resize_ss560x560!@crop_w560_h560_cT",
+              "height": 560
+            },
+            {
+              "width": 750,
+              "value": "https://mms.img.susercontent.com/vn-11134517-7ra0g-m6rx55jdz8s89e@resize_ss750x750!@crop_w750_h750_cT",
+              "height": 750
+            },
+            {
+              "width": 1242,
+              "value": "https://mms.img.susercontent.com/vn-11134517-7ra0g-m6rx55jdz8s89e@resize_ss1242x1242!@crop_w1242_h1242_cT",
+              "height": 1242
+            }
+          ],
+          "options": [],
+          "is_available": true,
+          "is_group_discount_item": true,
+          "time": {
+            "available": [],
+            "week_days": [
+              {
+                "start": "00:00",
+                "week_day": 1,
+                "end": "23:59"
+              },
+              {
+                "start": "00:00",
+                "week_day": 2,
+                "end": "23:59"
+              },
+              {
+                "start": "00:00",
+                "week_day": 3,
+                "end": "23:59"
+              },
+              {
+                "start": "00:00",
+                "week_day": 4,
+                "end": "23:59"
+              },
+              {
+                "start": "00:00",
+                "week_day": 5,
+                "end": "23:59"
+              },
+              {
+                "start": "00:00",
+                "week_day": 6,
+                "end": "23:59"
+              },
+              {
+                "start": "00:00",
+                "week_day": 7,
+                "end": "23:59"
+              }
+            ],
+            "not_available": []
+          },
+          "quantity": 0,
+          "id": 17676228,
+          "mms_image": "vn-11134517-7ra0g-m6rx55jdz8s89e",
+          "name": "Cơm bì(nhỏ)"
+        },
+        {
+          "is_deleted": false,
+          "description": "",
+          "price": {
+            "text": "3.000đ",
+            "unit": "đ",
+            "value": 3000
+          },
+          "is_active": true,
+          "display_order": 0,
+          "total_like": "10+",
+          "properties": [],
+          "photos": [
+            {
+              "width": 120,
+              "value": "https://mms.img.susercontent.com/vn-11134517-7r98o-lr6gy5ks83pgdd@resize_ss120x120!@crop_w120_h120_cT",
+              "height": 120
+            },
+            {
+              "width": 180,
+              "value": "https://mms.img.susercontent.com/vn-11134517-7r98o-lr6gy5ks83pgdd@resize_ss180x180!@crop_w180_h180_cT",
+              "height": 180
+            },
+            {
+              "width": 400,
+              "value": "https://mms.img.susercontent.com/vn-11134517-7r98o-lr6gy5ks83pgdd@resize_ss400x400!@crop_w400_h400_cT",
+              "height": 400
+            },
+            {
+              "width": 560,
+              "value": "https://mms.img.susercontent.com/vn-11134517-7r98o-lr6gy5ks83pgdd@resize_ss560x560!@crop_w560_h560_cT",
+              "height": 560
+            },
+            {
+              "width": 750,
+              "value": "https://mms.img.susercontent.com/vn-11134517-7r98o-lr6gy5ks83pgdd@resize_ss750x750!@crop_w750_h750_cT",
+              "height": 750
+            },
+            {
+              "width": 1242,
+              "value": "https://mms.img.susercontent.com/vn-11134517-7r98o-lr6gy5ks83pgdd@resize_ss1242x1242!@crop_w1242_h1242_cT",
+              "height": 1242
+            }
+          ],
+          "options": [],
+          "is_available": true,
+          "is_group_discount_item": true,
+          "time": {
+            "available": [],
+            "week_days": [
+              {
+                "start": "00:00",
+                "week_day": 1,
+                "end": "23:59"
+              },
+              {
+                "start": "00:00",
+                "week_day": 2,
+                "end": "23:59"
+              },
+              {
+                "start": "00:00",
+                "week_day": 3,
+                "end": "23:59"
+              },
+              {
+                "start": "00:00",
+                "week_day": 4,
+                "end": "23:59"
+              },
+              {
+                "start": "00:00",
+                "week_day": 5,
+                "end": "23:59"
+              },
+              {
+                "start": "00:00",
+                "week_day": 6,
+                "end": "23:59"
+              },
+              {
+                "start": "00:00",
+                "week_day": 7,
+                "end": "23:59"
+              }
+            ],
+            "not_available": []
+          },
+          "quantity": 0,
+          "id": 113942109,
+          "mms_image": "vn-11134517-7r98o-lr6gy5ks83pgdd",
+          "name": "Cơm thêm"
+        },
+        {
+          "is_deleted": false,
+          "description": "",
+          "price": {
+            "text": "12.000đ",
+            "unit": "đ",
+            "value": 12000
+          },
+          "is_active": true,
+          "display_order": 0,
+          "total_like": "50+",
+          "properties": [],
+          "photos": [
+            {
+              "width": 120,
+              "value": "https://mms.img.susercontent.com/vn-11134517-7r98o-lqym2p0xlbyc31@resize_ss120x120!@crop_w120_h120_cT",
+              "height": 120
+            },
+            {
+              "width": 180,
+              "value": "https://mms.img.susercontent.com/vn-11134517-7r98o-lqym2p0xlbyc31@resize_ss180x180!@crop_w180_h180_cT",
+              "height": 180
+            },
+            {
+              "width": 400,
+              "value": "https://mms.img.susercontent.com/vn-11134517-7r98o-lqym2p0xlbyc31@resize_ss400x400!@crop_w400_h400_cT",
+              "height": 400
+            },
+            {
+              "width": 560,
+              "value": "https://mms.img.susercontent.com/vn-11134517-7r98o-lqym2p0xlbyc31@resize_ss560x560!@crop_w560_h560_cT",
+              "height": 560
+            },
+            {
+              "width": 750,
+              "value": "https://mms.img.susercontent.com/vn-11134517-7r98o-lqym2p0xlbyc31@resize_ss750x750!@crop_w750_h750_cT",
+              "height": 750
+            },
+            {
+              "width": 1242,
+              "value": "https://mms.img.susercontent.com/vn-11134517-7r98o-lqym2p0xlbyc31@resize_ss1242x1242!@crop_w1242_h1242_cT",
+              "height": 1242
+            }
+          ],
+          "options": [],
+          "is_available": true,
+          "is_group_discount_item": true,
+          "time": {
+            "available": [],
+            "week_days": [
+              {
+                "start": "00:00",
+                "week_day": 1,
+                "end": "23:59"
+              },
+              {
+                "start": "00:00",
+                "week_day": 2,
+                "end": "23:59"
+              },
+              {
+                "start": "00:00",
+                "week_day": 3,
+                "end": "23:59"
+              },
+              {
+                "start": "00:00",
+                "week_day": 4,
+                "end": "23:59"
+              },
+              {
+                "start": "00:00",
+                "week_day": 5,
+                "end": "23:59"
+              },
+              {
+                "start": "00:00",
+                "week_day": 6,
+                "end": "23:59"
+              },
+              {
+                "start": "00:00",
+                "week_day": 7,
+                "end": "23:59"
+              }
+            ],
+            "not_available": []
+          },
+          "quantity": 0,
+          "id": 26696447,
+          "mms_image": "vn-11134517-7r98o-lqym2p0xlbyc31",
+          "name": "Cam Ép"
+        },
+        {
+          "is_deleted": false,
+          "description": "",
+          "price": {
+            "text": "35.000đ",
+            "unit": "đ",
+            "value": 35000
+          },
+          "is_active": true,
+          "display_order": 0,
+          "total_like": "10+",
+          "properties": [],
+          "photos": [
+            {
+              "width": 120,
+              "value": "https://mms.img.susercontent.com/vn-11134517-7r98o-lr6gy2r8cpms00@resize_ss120x120!@crop_w120_h120_cT",
+              "height": 120
+            },
+            {
+              "width": 180,
+              "value": "https://mms.img.susercontent.com/vn-11134517-7r98o-lr6gy2r8cpms00@resize_ss180x180!@crop_w180_h180_cT",
+              "height": 180
+            },
+            {
+              "width": 400,
+              "value": "https://mms.img.susercontent.com/vn-11134517-7r98o-lr6gy2r8cpms00@resize_ss400x400!@crop_w400_h400_cT",
+              "height": 400
+            },
+            {
+              "width": 560,
+              "value": "https://mms.img.susercontent.com/vn-11134517-7r98o-lr6gy2r8cpms00@resize_ss560x560!@crop_w560_h560_cT",
+              "height": 560
+            },
+            {
+              "width": 750,
+              "value": "https://mms.img.susercontent.com/vn-11134517-7r98o-lr6gy2r8cpms00@resize_ss750x750!@crop_w750_h750_cT",
+              "height": 750
+            },
+            {
+              "width": 1242,
+              "value": "https://mms.img.susercontent.com/vn-11134517-7r98o-lr6gy2r8cpms00@resize_ss1242x1242!@crop_w1242_h1242_cT",
+              "height": 1242
+            }
+          ],
+          "options": [],
+          "is_available": true,
+          "is_group_discount_item": true,
+          "time": {
+            "available": [],
+            "week_days": [
+              {
+                "start": "00:00",
+                "week_day": 1,
+                "end": "23:59"
+              },
+              {
+                "start": "00:00",
+                "week_day": 2,
+                "end": "23:59"
+              },
+              {
+                "start": "00:00",
+                "week_day": 3,
+                "end": "23:59"
+              },
+              {
+                "start": "00:00",
+                "week_day": 4,
+                "end": "23:59"
+              },
+              {
+                "start": "00:00",
+                "week_day": 5,
+                "end": "23:59"
+              },
+              {
+                "start": "00:00",
+                "week_day": 6,
+                "end": "23:59"
+              },
+              {
+                "start": "00:00",
+                "week_day": 7,
+                "end": "23:59"
+              }
+            ],
+            "not_available": []
+          },
+          "quantity": 0,
+          "id": 113942106,
+          "mms_image": "vn-11134517-7r98o-lr6gy2r8cpms00",
+          "name": "Gà nướng vĩ + Trứng"
+        },
+        {
+          "is_deleted": false,
+          "description": "",
+          "price": {
+            "text": "6.000đ",
+            "unit": "đ",
+            "value": 6000
+          },
+          "is_active": true,
+          "display_order": 0,
+          "total_like": "10+",
+          "properties": [],
+          "photos": [
+            {
+              "width": 120,
+              "value": "https://mms.img.susercontent.com/vn-11134517-7r98o-lqzgo91jtac95e@resize_ss120x120!@crop_w120_h120_cT",
+              "height": 120
+            },
+            {
+              "width": 180,
+              "value": "https://mms.img.susercontent.com/vn-11134517-7r98o-lqzgo91jtac95e@resize_ss180x180!@crop_w180_h180_cT",
+              "height": 180
+            },
+            {
+              "width": 400,
+              "value": "https://mms.img.susercontent.com/vn-11134517-7r98o-lqzgo91jtac95e@resize_ss400x400!@crop_w400_h400_cT",
+              "height": 400
+            },
+            {
+              "width": 560,
+              "value": "https://mms.img.susercontent.com/vn-11134517-7r98o-lqzgo91jtac95e@resize_ss560x560!@crop_w560_h560_cT",
+              "height": 560
+            },
+            {
+              "width": 750,
+              "value": "https://mms.img.susercontent.com/vn-11134517-7r98o-lqzgo91jtac95e@resize_ss750x750!@crop_w750_h750_cT",
+              "height": 750
+            },
+            {
+              "width": 1242,
+              "value": "https://mms.img.susercontent.com/vn-11134517-7r98o-lqzgo91jtac95e@resize_ss1242x1242!@crop_w1242_h1242_cT",
+              "height": 1242
+            }
+          ],
+          "options": [],
+          "is_available": true,
+          "is_group_discount_item": true,
+          "time": {
+            "available": [],
+            "week_days": [
+              {
+                "start": "00:00",
+                "week_day": 1,
+                "end": "23:59"
+              },
+              {
+                "start": "00:00",
+                "week_day": 2,
+                "end": "23:59"
+              },
+              {
+                "start": "00:00",
+                "week_day": 3,
+                "end": "23:59"
+              },
+              {
+                "start": "00:00",
+                "week_day": 4,
+                "end": "23:59"
+              },
+              {
+                "start": "00:00",
+                "week_day": 5,
+                "end": "23:59"
+              },
+              {
+                "start": "00:00",
+                "week_day": 6,
+                "end": "23:59"
+              },
+              {
+                "start": "00:00",
+                "week_day": 7,
+                "end": "23:59"
+              }
+            ],
+            "not_available": []
+          },
+          "quantity": 0,
+          "id": 113942114,
+          "mms_image": "vn-11134517-7r98o-lqzgo91jtac95e",
+          "name": "Chả thêm"
+        },
+        {
+          "is_deleted": false,
+          "description": "",
+          "price": {
+            "text": "7.000đ",
+            "unit": "đ",
+            "value": 7000
+          },
+          "is_active": true,
+          "display_order": 0,
+          "total_like": "50+",
+          "properties": [],
+          "photos": [
+            {
+              "width": 120,
+              "value": "https://mms.img.susercontent.com/vn-11134517-7r98o-lqzgo7ztciahef@resize_ss120x120!@crop_w120_h120_cT",
+              "height": 120
+            },
+            {
+              "width": 180,
+              "value": "https://mms.img.susercontent.com/vn-11134517-7r98o-lqzgo7ztciahef@resize_ss180x180!@crop_w180_h180_cT",
+              "height": 180
+            },
+            {
+              "width": 400,
+              "value": "https://mms.img.susercontent.com/vn-11134517-7r98o-lqzgo7ztciahef@resize_ss400x400!@crop_w400_h400_cT",
+              "height": 400
+            },
+            {
+              "width": 560,
+              "value": "https://mms.img.susercontent.com/vn-11134517-7r98o-lqzgo7ztciahef@resize_ss560x560!@crop_w560_h560_cT",
+              "height": 560
+            },
+            {
+              "width": 750,
+              "value": "https://mms.img.susercontent.com/vn-11134517-7r98o-lqzgo7ztciahef@resize_ss750x750!@crop_w750_h750_cT",
+              "height": 750
+            },
+            {
+              "width": 1242,
+              "value": "https://mms.img.susercontent.com/vn-11134517-7r98o-lqzgo7ztciahef@resize_ss1242x1242!@crop_w1242_h1242_cT",
+              "height": 1242
+            }
+          ],
+          "options": [],
+          "is_available": true,
+          "is_group_discount_item": true,
+          "time": {
+            "available": [],
+            "week_days": [
+              {
+                "start": "00:00",
+                "week_day": 1,
+                "end": "23:59"
+              },
+              {
+                "start": "00:00",
+                "week_day": 2,
+                "end": "23:59"
+              },
+              {
+                "start": "00:00",
+                "week_day": 3,
+                "end": "23:59"
+              },
+              {
+                "start": "00:00",
+                "week_day": 4,
+                "end": "23:59"
+              },
+              {
+                "start": "00:00",
+                "week_day": 5,
+                "end": "23:59"
+              },
+              {
+                "start": "00:00",
+                "week_day": 6,
+                "end": "23:59"
+              },
+              {
+                "start": "00:00",
+                "week_day": 7,
+                "end": "23:59"
+              }
+            ],
+            "not_available": []
+          },
+          "quantity": 0,
+          "id": 113942110,
+          "mms_image": "vn-11134517-7r98o-lqzgo7ztciahef",
+          "name": "Trứng thêm"
+        },
+        {
+          "is_deleted": false,
+          "description": "",
+          "price": {
+            "text": "28.000đ",
+            "unit": "đ",
+            "value": 28000
+          },
+          "is_active": true,
+          "display_order": 0,
+          "total_like": "10+",
+          "properties": [],
+          "photos": [
+            {
+              "width": 120,
+              "value": "https://mms.img.susercontent.com/vn-11134517-7ra0g-m6w06j9ryibcb1@resize_ss120x120!@crop_w120_h120_cT",
+              "height": 120
+            },
+            {
+              "width": 180,
+              "value": "https://mms.img.susercontent.com/vn-11134517-7ra0g-m6w06j9ryibcb1@resize_ss180x180!@crop_w180_h180_cT",
+              "height": 180
+            },
+            {
+              "width": 400,
+              "value": "https://mms.img.susercontent.com/vn-11134517-7ra0g-m6w06j9ryibcb1@resize_ss400x400!@crop_w400_h400_cT",
+              "height": 400
+            },
+            {
+              "width": 560,
+              "value": "https://mms.img.susercontent.com/vn-11134517-7ra0g-m6w06j9ryibcb1@resize_ss560x560!@crop_w560_h560_cT",
+              "height": 560
+            },
+            {
+              "width": 750,
+              "value": "https://mms.img.susercontent.com/vn-11134517-7ra0g-m6w06j9ryibcb1@resize_ss750x750!@crop_w750_h750_cT",
+              "height": 750
+            },
+            {
+              "width": 1242,
+              "value": "https://mms.img.susercontent.com/vn-11134517-7ra0g-m6w06j9ryibcb1@resize_ss1242x1242!@crop_w1242_h1242_cT",
+              "height": 1242
+            }
+          ],
+          "options": [],
+          "is_available": true,
+          "is_group_discount_item": true,
+          "time": {
+            "available": [],
+            "week_days": [
+              {
+                "start": "00:00",
+                "week_day": 1,
+                "end": "23:59"
+              },
+              {
+                "start": "00:00",
+                "week_day": 2,
+                "end": "23:59"
+              },
+              {
+                "start": "00:00",
+                "week_day": 3,
+                "end": "23:59"
+              },
+              {
+                "start": "00:00",
+                "week_day": 4,
+                "end": "23:59"
+              },
+              {
+                "start": "00:00",
+                "week_day": 5,
+                "end": "23:59"
+              },
+              {
+                "start": "00:00",
+                "week_day": 6,
+                "end": "23:59"
+              },
+              {
+                "start": "00:00",
+                "week_day": 7,
+                "end": "23:59"
+              }
+            ],
+            "not_available": []
+          },
+          "quantity": 0,
+          "id": 113942116,
+          "mms_image": "vn-11134517-7ra0g-m6w06j9ryibcb1",
+          "name": "Cơm Bì"
+        },
+        {
+          "is_deleted": false,
+          "description": "Thơm ngon đến giọt cuối cùng ( nên thử nhak)!!!",
+          "price": {
+            "text": "12.000đ",
+            "unit": "đ",
+            "value": 12000
+          },
+          "is_active": true,
+          "display_order": 0,
+          "total_like": "10+",
+          "properties": [],
+          "photos": [
+            {
+              "width": 120,
+              "value": "https://mms.img.susercontent.com/vn-11134517-7r98o-lr6iqm06k5voca@resize_ss120x120!@crop_w120_h120_cT",
+              "height": 120
+            },
+            {
+              "width": 180,
+              "value": "https://mms.img.susercontent.com/vn-11134517-7r98o-lr6iqm06k5voca@resize_ss180x180!@crop_w180_h180_cT",
+              "height": 180
+            },
+            {
+              "width": 400,
+              "value": "https://mms.img.susercontent.com/vn-11134517-7r98o-lr6iqm06k5voca@resize_ss400x400!@crop_w400_h400_cT",
+              "height": 400
+            },
+            {
+              "width": 560,
+              "value": "https://mms.img.susercontent.com/vn-11134517-7r98o-lr6iqm06k5voca@resize_ss560x560!@crop_w560_h560_cT",
+              "height": 560
+            },
+            {
+              "width": 750,
+              "value": "https://mms.img.susercontent.com/vn-11134517-7r98o-lr6iqm06k5voca@resize_ss750x750!@crop_w750_h750_cT",
+              "height": 750
+            },
+            {
+              "width": 1242,
+              "value": "https://mms.img.susercontent.com/vn-11134517-7r98o-lr6iqm06k5voca@resize_ss1242x1242!@crop_w1242_h1242_cT",
+              "height": 1242
+            }
+          ],
+          "options": [],
+          "is_available": true,
+          "is_group_discount_item": true,
+          "time": {
+            "available": [],
+            "week_days": [
+              {
+                "start": "00:00",
+                "week_day": 1,
+                "end": "23:59"
+              },
+              {
+                "start": "00:00",
+                "week_day": 2,
+                "end": "23:59"
+              },
+              {
+                "start": "00:00",
+                "week_day": 3,
+                "end": "23:59"
+              },
+              {
+                "start": "00:00",
+                "week_day": 4,
+                "end": "23:59"
+              },
+              {
+                "start": "00:00",
+                "week_day": 5,
+                "end": "23:59"
+              },
+              {
+                "start": "00:00",
+                "week_day": 6,
+                "end": "23:59"
+              },
+              {
+                "start": "00:00",
+                "week_day": 7,
+                "end": "23:59"
+              }
+            ],
+            "not_available": []
+          },
+          "quantity": 0,
+          "id": 86942183,
+          "mms_image": "vn-11134517-7r98o-lr6iqm06k5voca",
+          "name": "Ca Cao Sữa Đá"
+        },
+        {
+          "is_deleted": false,
+          "description": "",
+          "price": {
+            "text": "12.000đ",
+            "unit": "đ",
+            "value": 12000
+          },
+          "is_active": true,
+          "display_order": 0,
+          "total_like": "10+",
+          "properties": [],
+          "photos": [
+            {
+              "width": 120,
+              "value": "https://mms.img.susercontent.com/vn-11134517-7r98o-lqzgo7i22hsp06@resize_ss120x120!@crop_w120_h120_cT",
+              "height": 120
+            },
+            {
+              "width": 180,
+              "value": "https://mms.img.susercontent.com/vn-11134517-7r98o-lqzgo7i22hsp06@resize_ss180x180!@crop_w180_h180_cT",
+              "height": 180
+            },
+            {
+              "width": 400,
+              "value": "https://mms.img.susercontent.com/vn-11134517-7r98o-lqzgo7i22hsp06@resize_ss400x400!@crop_w400_h400_cT",
+              "height": 400
+            },
+            {
+              "width": 560,
+              "value": "https://mms.img.susercontent.com/vn-11134517-7r98o-lqzgo7i22hsp06@resize_ss560x560!@crop_w560_h560_cT",
+              "height": 560
+            },
+            {
+              "width": 750,
+              "value": "https://mms.img.susercontent.com/vn-11134517-7r98o-lqzgo7i22hsp06@resize_ss750x750!@crop_w750_h750_cT",
+              "height": 750
+            },
+            {
+              "width": 1242,
+              "value": "https://mms.img.susercontent.com/vn-11134517-7r98o-lqzgo7i22hsp06@resize_ss1242x1242!@crop_w1242_h1242_cT",
+              "height": 1242
+            }
+          ],
+          "options": [],
+          "is_available": true,
+          "is_group_discount_item": true,
+          "time": {
+            "available": [],
+            "week_days": [
+              {
+                "start": "00:00",
+                "week_day": 1,
+                "end": "23:59"
+              },
+              {
+                "start": "00:00",
+                "week_day": 2,
+                "end": "23:59"
+              },
+              {
+                "start": "00:00",
+                "week_day": 3,
+                "end": "23:59"
+              },
+              {
+                "start": "00:00",
+                "week_day": 4,
+                "end": "23:59"
+              },
+              {
+                "start": "00:00",
+                "week_day": 5,
+                "end": "23:59"
+              },
+              {
+                "start": "00:00",
+                "week_day": 6,
+                "end": "23:59"
+              },
+              {
+                "start": "00:00",
+                "week_day": 7,
+                "end": "23:59"
+              }
+            ],
+            "not_available": []
+          },
+          "quantity": 0,
+          "id": 113942112,
+          "mms_image": "vn-11134517-7r98o-lqzgo7i22hsp06",
+          "name": "Thịt thêm"
+        },
+        {
+          "is_deleted": false,
+          "description": "Vị thanh mát chua chua ngọt ngọt",
+          "price": {
+            "text": "12.000đ",
+            "unit": "đ",
+            "value": 12000
+          },
+          "is_active": true,
+          "display_order": 0,
+          "total_like": "10+",
+          "properties": [],
+          "photos": [
+            {
+              "width": 120,
+              "value": "https://mms.img.susercontent.com/vn-11134517-7r98o-lr6rpwh52eu188@resize_ss120x120!@crop_w120_h120_cT",
+              "height": 120
+            },
+            {
+              "width": 180,
+              "value": "https://mms.img.susercontent.com/vn-11134517-7r98o-lr6rpwh52eu188@resize_ss180x180!@crop_w180_h180_cT",
+              "height": 180
+            },
+            {
+              "width": 400,
+              "value": "https://mms.img.susercontent.com/vn-11134517-7r98o-lr6rpwh52eu188@resize_ss400x400!@crop_w400_h400_cT",
+              "height": 400
+            },
+            {
+              "width": 560,
+              "value": "https://mms.img.susercontent.com/vn-11134517-7r98o-lr6rpwh52eu188@resize_ss560x560!@crop_w560_h560_cT",
+              "height": 560
+            },
+            {
+              "width": 750,
+              "value": "https://mms.img.susercontent.com/vn-11134517-7r98o-lr6rpwh52eu188@resize_ss750x750!@crop_w750_h750_cT",
+              "height": 750
+            },
+            {
+              "width": 1242,
+              "value": "https://mms.img.susercontent.com/vn-11134517-7r98o-lr6rpwh52eu188@resize_ss1242x1242!@crop_w1242_h1242_cT",
+              "height": 1242
+            }
+          ],
+          "options": [],
+          "is_available": true,
+          "is_group_discount_item": true,
+          "time": {
+            "available": [],
+            "week_days": [
+              {
+                "start": "00:00",
+                "week_day": 1,
+                "end": "23:59"
+              },
+              {
+                "start": "00:00",
+                "week_day": 2,
+                "end": "23:59"
+              },
+              {
+                "start": "00:00",
+                "week_day": 3,
+                "end": "23:59"
+              },
+              {
+                "start": "00:00",
+                "week_day": 4,
+                "end": "23:59"
+              },
+              {
+                "start": "00:00",
+                "week_day": 5,
+                "end": "23:59"
+              },
+              {
+                "start": "00:00",
+                "week_day": 6,
+                "end": "23:59"
+              },
+              {
+                "start": "00:00",
+                "week_day": 7,
+                "end": "23:59"
+              }
+            ],
+            "not_available": []
+          },
+          "quantity": 0,
+          "id": 154257249,
+          "mms_image": "vn-11134517-7r98o-lr6rpwh52eu188",
+          "name": "Trà  tắc  thái  xanh"
+        },
+        {
+          "is_deleted": false,
+          "description": "",
+          "price": {
+            "text": "28.000đ",
+            "unit": "đ",
+            "value": 28000
+          },
+          "is_active": true,
+          "display_order": 0,
+          "total_like": "10+",
+          "properties": [],
+          "photos": [
+            {
+              "width": 120,
+              "value": "https://mms.img.susercontent.com/vn-11134517-7r98o-lr45czs7rcuc16@resize_ss120x120!@crop_w120_h120_cT",
+              "height": 120
+            },
+            {
+              "width": 180,
+              "value": "https://mms.img.susercontent.com/vn-11134517-7r98o-lr45czs7rcuc16@resize_ss180x180!@crop_w180_h180_cT",
+              "height": 180
+            },
+            {
+              "width": 400,
+              "value": "https://mms.img.susercontent.com/vn-11134517-7r98o-lr45czs7rcuc16@resize_ss400x400!@crop_w400_h400_cT",
+              "height": 400
+            },
+            {
+              "width": 560,
+              "value": "https://mms.img.susercontent.com/vn-11134517-7r98o-lr45czs7rcuc16@resize_ss560x560!@crop_w560_h560_cT",
+              "height": 560
+            },
+            {
+              "width": 750,
+              "value": "https://mms.img.susercontent.com/vn-11134517-7r98o-lr45czs7rcuc16@resize_ss750x750!@crop_w750_h750_cT",
+              "height": 750
+            },
+            {
+              "width": 1242,
+              "value": "https://mms.img.susercontent.com/vn-11134517-7r98o-lr45czs7rcuc16@resize_ss1242x1242!@crop_w1242_h1242_cT",
+              "height": 1242
+            }
+          ],
+          "options": [],
+          "is_available": true,
+          "is_group_discount_item": true,
+          "time": {
+            "available": [],
+            "week_days": [
+              {
+                "start": "00:00",
+                "week_day": 1,
+                "end": "23:59"
+              },
+              {
+                "start": "00:00",
+                "week_day": 2,
+                "end": "23:59"
+              },
+              {
+                "start": "00:00",
+                "week_day": 3,
+                "end": "23:59"
+              },
+              {
+                "start": "00:00",
+                "week_day": 4,
+                "end": "23:59"
+              },
+              {
+                "start": "00:00",
+                "week_day": 5,
+                "end": "23:59"
+              },
+              {
+                "start": "00:00",
+                "week_day": 6,
+                "end": "23:59"
+              },
+              {
+                "start": "00:00",
+                "week_day": 7,
+                "end": "23:59"
+              }
+            ],
+            "not_available": []
+          },
+          "quantity": 0,
+          "id": 155338941,
+          "mms_image": "vn-11134517-7r98o-lr45czs7rcuc16",
+          "name": "Cơm sườn không"
+        },
+        {
+          "is_deleted": false,
+          "description": "",
+          "price": {
+            "text": "35.000đ",
+            "unit": "đ",
+            "value": 35000
+          },
+          "is_active": true,
+          "display_order": 0,
+          "total_like": "10+",
+          "properties": [],
+          "photos": [
+            {
+              "width": 120,
+              "value": "https://mms.img.susercontent.com/vn-11134517-7r98o-lr6gy2b509fo33@resize_ss120x120!@crop_w120_h120_cT",
+              "height": 120
+            },
+            {
+              "width": 180,
+              "value": "https://mms.img.susercontent.com/vn-11134517-7r98o-lr6gy2b509fo33@resize_ss180x180!@crop_w180_h180_cT",
+              "height": 180
+            },
+            {
+              "width": 400,
+              "value": "https://mms.img.susercontent.com/vn-11134517-7r98o-lr6gy2b509fo33@resize_ss400x400!@crop_w400_h400_cT",
+              "height": 400
+            },
+            {
+              "width": 560,
+              "value": "https://mms.img.susercontent.com/vn-11134517-7r98o-lr6gy2b509fo33@resize_ss560x560!@crop_w560_h560_cT",
+              "height": 560
+            },
+            {
+              "width": 750,
+              "value": "https://mms.img.susercontent.com/vn-11134517-7r98o-lr6gy2b509fo33@resize_ss750x750!@crop_w750_h750_cT",
+              "height": 750
+            },
+            {
+              "width": 1242,
+              "value": "https://mms.img.susercontent.com/vn-11134517-7r98o-lr6gy2b509fo33@resize_ss1242x1242!@crop_w1242_h1242_cT",
+              "height": 1242
+            }
+          ],
+          "options": [],
+          "is_available": true,
+          "is_group_discount_item": true,
+          "time": {
+            "available": [],
+            "week_days": [
+              {
+                "start": "00:00",
+                "week_day": 1,
+                "end": "23:59"
+              },
+              {
+                "start": "00:00",
+                "week_day": 2,
+                "end": "23:59"
+              },
+              {
+                "start": "00:00",
+                "week_day": 3,
+                "end": "23:59"
+              },
+              {
+                "start": "00:00",
+                "week_day": 4,
+                "end": "23:59"
+              },
+              {
+                "start": "00:00",
+                "week_day": 5,
+                "end": "23:59"
+              },
+              {
+                "start": "00:00",
+                "week_day": 6,
+                "end": "23:59"
+              },
+              {
+                "start": "00:00",
+                "week_day": 7,
+                "end": "23:59"
+              }
+            ],
+            "not_available": []
+          },
+          "quantity": 0,
+          "id": 113942103,
+          "mms_image": "vn-11134517-7r98o-lr6gy2b509fo33",
+          "name": "Sà bì chưởng+ Trứng"
+        },
+        {
+          "is_deleted": false,
+          "description": "Vị thanh mát uống là ghiền luôn",
+          "price": {
+            "text": "12.000đ",
+            "unit": "đ",
+            "value": 12000
+          },
+          "is_active": true,
+          "display_order": 0,
+          "total_like": "3",
+          "properties": [],
+          "photos": [
+            {
+              "width": 120,
+              "value": "https://mms.img.susercontent.com/vn-11134517-7r98o-lqzysywfjl503b@resize_ss120x120!@crop_w120_h120_cT",
+              "height": 120
+            },
+            {
+              "width": 180,
+              "value": "https://mms.img.susercontent.com/vn-11134517-7r98o-lqzysywfjl503b@resize_ss180x180!@crop_w180_h180_cT",
+              "height": 180
+            },
+            {
+              "width": 400,
+              "value": "https://mms.img.susercontent.com/vn-11134517-7r98o-lqzysywfjl503b@resize_ss400x400!@crop_w400_h400_cT",
+              "height": 400
+            },
+            {
+              "width": 560,
+              "value": "https://mms.img.susercontent.com/vn-11134517-7r98o-lqzysywfjl503b@resize_ss560x560!@crop_w560_h560_cT",
+              "height": 560
+            },
+            {
+              "width": 750,
+              "value": "https://mms.img.susercontent.com/vn-11134517-7r98o-lqzysywfjl503b@resize_ss750x750!@crop_w750_h750_cT",
+              "height": 750
+            },
+            {
+              "width": 1242,
+              "value": "https://mms.img.susercontent.com/vn-11134517-7r98o-lqzysywfjl503b@resize_ss1242x1242!@crop_w1242_h1242_cT",
+              "height": 1242
+            }
+          ],
+          "options": [],
+          "is_available": true,
+          "is_group_discount_item": true,
+          "time": {
+            "available": [],
+            "week_days": [
+              {
+                "start": "00:00",
+                "week_day": 1,
+                "end": "23:59"
+              },
+              {
+                "start": "00:00",
+                "week_day": 2,
+                "end": "23:59"
+              },
+              {
+                "start": "00:00",
+                "week_day": 3,
+                "end": "23:59"
+              },
+              {
+                "start": "00:00",
+                "week_day": 4,
+                "end": "23:59"
+              },
+              {
+                "start": "00:00",
+                "week_day": 5,
+                "end": "23:59"
+              },
+              {
+                "start": "00:00",
+                "week_day": 6,
+                "end": "23:59"
+              },
+              {
+                "start": "00:00",
+                "week_day": 7,
+                "end": "23:59"
+              }
+            ],
+            "not_available": []
+          },
+          "quantity": 0,
+          "id": 155799062,
+          "mms_image": "vn-11134517-7r98o-lqzysywfjl503b",
+          "name": "Rể tranh mía lao nhà làm đường phèn 100%"
+        },
+        {
+          "is_deleted": false,
+          "description": "Thanh mát và sảng khoái , đường phèn 100%",
+          "price": {
+            "text": "12.000đ",
+            "unit": "đ",
+            "value": 12000
+          },
+          "is_active": true,
+          "display_order": 0,
+          "total_like": "6",
+          "properties": [],
+          "photos": [
+            {
+              "width": 120,
+              "value": "https://mms.img.susercontent.com/vn-11134517-7r98o-lr6vhf9tjee13f@resize_ss120x120!@crop_w120_h120_cT",
+              "height": 120
+            },
+            {
+              "width": 180,
+              "value": "https://mms.img.susercontent.com/vn-11134517-7r98o-lr6vhf9tjee13f@resize_ss180x180!@crop_w180_h180_cT",
+              "height": 180
+            },
+            {
+              "width": 400,
+              "value": "https://mms.img.susercontent.com/vn-11134517-7r98o-lr6vhf9tjee13f@resize_ss400x400!@crop_w400_h400_cT",
+              "height": 400
+            },
+            {
+              "width": 560,
+              "value": "https://mms.img.susercontent.com/vn-11134517-7r98o-lr6vhf9tjee13f@resize_ss560x560!@crop_w560_h560_cT",
+              "height": 560
+            },
+            {
+              "width": 750,
+              "value": "https://mms.img.susercontent.com/vn-11134517-7r98o-lr6vhf9tjee13f@resize_ss750x750!@crop_w750_h750_cT",
+              "height": 750
+            },
+            {
+              "width": 1242,
+              "value": "https://mms.img.susercontent.com/vn-11134517-7r98o-lr6vhf9tjee13f@resize_ss1242x1242!@crop_w1242_h1242_cT",
+              "height": 1242
+            }
+          ],
+          "options": [],
+          "is_available": true,
+          "is_group_discount_item": true,
+          "time": {
+            "available": [],
+            "week_days": [
+              {
+                "start": "00:00",
+                "week_day": 1,
+                "end": "23:59"
+              },
+              {
+                "start": "00:00",
+                "week_day": 2,
+                "end": "23:59"
+              },
+              {
+                "start": "00:00",
+                "week_day": 3,
+                "end": "23:59"
+              },
+              {
+                "start": "00:00",
+                "week_day": 4,
+                "end": "23:59"
+              },
+              {
+                "start": "00:00",
+                "week_day": 5,
+                "end": "23:59"
+              },
+              {
+                "start": "00:00",
+                "week_day": 6,
+                "end": "23:59"
+              },
+              {
+                "start": "00:00",
+                "week_day": 7,
+                "end": "23:59"
+              }
+            ],
+            "not_available": []
+          },
+          "quantity": 0,
+          "id": 155799146,
+          "mms_image": "vn-11134517-7r98o-lr6vhf9tjee13f",
+          "name": "Sâm lục vị"
+        },
+        {
+          "is_deleted": false,
+          "description": "Vị ngọt béo tự nhiên từ 100% sữa tươi và cacao nguyên chất!!!",
+          "price": {
+            "text": "15.000đ",
+            "unit": "đ",
+            "value": 15000
+          },
+          "is_active": true,
+          "display_order": 0,
+          "total_like": "10+",
+          "properties": [],
+          "photos": [
+            {
+              "width": 120,
+              "value": "https://mms.img.susercontent.com/vn-11134517-7ra0g-m6j3zvbp7uld24@resize_ss120x120!@crop_w120_h120_cT",
+              "height": 120
+            },
+            {
+              "width": 180,
+              "value": "https://mms.img.susercontent.com/vn-11134517-7ra0g-m6j3zvbp7uld24@resize_ss180x180!@crop_w180_h180_cT",
+              "height": 180
+            },
+            {
+              "width": 400,
+              "value": "https://mms.img.susercontent.com/vn-11134517-7ra0g-m6j3zvbp7uld24@resize_ss400x400!@crop_w400_h400_cT",
+              "height": 400
+            },
+            {
+              "width": 560,
+              "value": "https://mms.img.susercontent.com/vn-11134517-7ra0g-m6j3zvbp7uld24@resize_ss560x560!@crop_w560_h560_cT",
+              "height": 560
+            },
+            {
+              "width": 750,
+              "value": "https://mms.img.susercontent.com/vn-11134517-7ra0g-m6j3zvbp7uld24@resize_ss750x750!@crop_w750_h750_cT",
+              "height": 750
+            },
+            {
+              "width": 1242,
+              "value": "https://mms.img.susercontent.com/vn-11134517-7ra0g-m6j3zvbp7uld24@resize_ss1242x1242!@crop_w1242_h1242_cT",
+              "height": 1242
+            }
+          ],
+          "options": [],
+          "is_available": true,
+          "is_group_discount_item": true,
+          "time": {
+            "available": [],
+            "week_days": [
+              {
+                "start": "00:00",
+                "week_day": 1,
+                "end": "23:59"
+              },
+              {
+                "start": "00:00",
+                "week_day": 2,
+                "end": "23:59"
+              },
+              {
+                "start": "00:00",
+                "week_day": 3,
+                "end": "23:59"
+              },
+              {
+                "start": "00:00",
+                "week_day": 4,
+                "end": "23:59"
+              },
+              {
+                "start": "00:00",
+                "week_day": 5,
+                "end": "23:59"
+              },
+              {
+                "start": "00:00",
+                "week_day": 6,
+                "end": "23:59"
+              },
+              {
+                "start": "00:00",
+                "week_day": 7,
+                "end": "23:59"
+              }
+            ],
+            "not_available": []
+          },
+          "quantity": 0,
+          "id": 155799082,
+          "mms_image": "vn-11134517-7ra0g-m6j3zvbp7uld24",
+          "name": "Cacao latte"
+        },
+        {
+          "is_deleted": false,
+          "description": "",
+          "price": {
+            "text": "28.000đ",
+            "unit": "đ",
+            "value": 28000
+          },
+          "is_active": true,
+          "display_order": -1,
+          "total_like": "7",
+          "properties": [],
+          "photos": [
+            {
+              "width": 120,
+              "value": "https://mms.img.susercontent.com/vn-11134517-7r98o-lr0asmjx576h79@resize_ss120x120!@crop_w120_h120_cT",
+              "height": 120
+            },
+            {
+              "width": 180,
+              "value": "https://mms.img.susercontent.com/vn-11134517-7r98o-lr0asmjx576h79@resize_ss180x180!@crop_w180_h180_cT",
+              "height": 180
+            },
+            {
+              "width": 400,
+              "value": "https://mms.img.susercontent.com/vn-11134517-7r98o-lr0asmjx576h79@resize_ss400x400!@crop_w400_h400_cT",
+              "height": 400
+            },
+            {
+              "width": 560,
+              "value": "https://mms.img.susercontent.com/vn-11134517-7r98o-lr0asmjx576h79@resize_ss560x560!@crop_w560_h560_cT",
+              "height": 560
+            },
+            {
+              "width": 750,
+              "value": "https://mms.img.susercontent.com/vn-11134517-7r98o-lr0asmjx576h79@resize_ss750x750!@crop_w750_h750_cT",
+              "height": 750
+            },
+            {
+              "width": 1242,
+              "value": "https://mms.img.susercontent.com/vn-11134517-7r98o-lr0asmjx576h79@resize_ss1242x1242!@crop_w1242_h1242_cT",
+              "height": 1242
+            }
+          ],
+          "options": [],
+          "is_available": true,
+          "is_group_discount_item": true,
+          "time": {
+            "available": [],
+            "week_days": [
+              {
+                "start": "00:00",
+                "week_day": 1,
+                "end": "23:59"
+              },
+              {
+                "start": "00:00",
+                "week_day": 2,
+                "end": "23:59"
+              },
+              {
+                "start": "00:00",
+                "week_day": 3,
+                "end": "23:59"
+              },
+              {
+                "start": "00:00",
+                "week_day": 4,
+                "end": "23:59"
+              },
+              {
+                "start": "00:00",
+                "week_day": 5,
+                "end": "23:59"
+              },
+              {
+                "start": "00:00",
+                "week_day": 6,
+                "end": "23:59"
+              },
+              {
+                "start": "00:00",
+                "week_day": 7,
+                "end": "23:59"
+              }
+            ],
+            "not_available": []
+          },
+          "quantity": 0,
+          "id": 157631322,
+          "mms_image": "vn-11134517-7r98o-lr0asmjx576h79",
+          "name": "Cơm Sườn Bì"
+        },
+        {
+          "is_deleted": false,
+          "description": "Lạp xưởng nạc 90%, rất thơm ngon. Ăn rất cuốn",
+          "price": {
+            "text": "35.000đ",
+            "unit": "đ",
+            "value": 35000
+          },
+          "is_active": true,
+          "display_order": 0,
+          "total_like": "1",
+          "properties": [],
+          "photos": [
+            {
+              "width": 120,
+              "value": "https://mms.img.susercontent.com/vn-11134517-7ras8-m3adu9exttj097@resize_ss120x120!@crop_w120_h120_cT",
+              "height": 120
+            },
+            {
+              "width": 180,
+              "value": "https://mms.img.susercontent.com/vn-11134517-7ras8-m3adu9exttj097@resize_ss180x180!@crop_w180_h180_cT",
+              "height": 180
+            },
+            {
+              "width": 400,
+              "value": "https://mms.img.susercontent.com/vn-11134517-7ras8-m3adu9exttj097@resize_ss400x400!@crop_w400_h400_cT",
+              "height": 400
+            },
+            {
+              "width": 560,
+              "value": "https://mms.img.susercontent.com/vn-11134517-7ras8-m3adu9exttj097@resize_ss560x560!@crop_w560_h560_cT",
+              "height": 560
+            },
+            {
+              "width": 750,
+              "value": "https://mms.img.susercontent.com/vn-11134517-7ras8-m3adu9exttj097@resize_ss750x750!@crop_w750_h750_cT",
+              "height": 750
+            },
+            {
+              "width": 1242,
+              "value": "https://mms.img.susercontent.com/vn-11134517-7ras8-m3adu9exttj097@resize_ss1242x1242!@crop_w1242_h1242_cT",
+              "height": 1242
+            }
+          ],
+          "options": [],
+          "is_available": true,
+          "is_group_discount_item": true,
+          "time": {
+            "available": [],
+            "week_days": [
+              {
+                "start": "00:00",
+                "week_day": 1,
+                "end": "23:59"
+              },
+              {
+                "start": "00:00",
+                "week_day": 2,
+                "end": "23:59"
+              },
+              {
+                "start": "00:00",
+                "week_day": 3,
+                "end": "23:59"
+              },
+              {
+                "start": "00:00",
+                "week_day": 4,
+                "end": "23:59"
+              },
+              {
+                "start": "00:00",
+                "week_day": 5,
+                "end": "23:59"
+              },
+              {
+                "start": "00:00",
+                "week_day": 6,
+                "end": "23:59"
+              },
+              {
+                "start": "00:00",
+                "week_day": 7,
+                "end": "23:59"
+              }
+            ],
+            "not_available": []
+          },
+          "quantity": 0,
+          "id": 163817409,
+          "mms_image": "vn-11134517-7ras8-m3adu9exttj097",
+          "name": "Cơm Sườn lạp xưởng"
+        },
+        {
+          "is_deleted": false,
+          "description": "",
+          "price": {
+            "text": "3.000đ",
+            "unit": "đ",
+            "value": 3000
+          },
+          "is_active": true,
+          "display_order": 0,
+          "total_like": "3",
+          "properties": [],
+          "photos": [
+            {
+              "width": 120,
+              "value": "https://mms.img.susercontent.com/vn-11134517-7ras8-m4e3bkh7qank59@resize_ss120x120!@crop_w120_h120_cT",
+              "height": 120
+            },
+            {
+              "width": 180,
+              "value": "https://mms.img.susercontent.com/vn-11134517-7ras8-m4e3bkh7qank59@resize_ss180x180!@crop_w180_h180_cT",
+              "height": 180
+            },
+            {
+              "width": 400,
+              "value": "https://mms.img.susercontent.com/vn-11134517-7ras8-m4e3bkh7qank59@resize_ss400x400!@crop_w400_h400_cT",
+              "height": 400
+            },
+            {
+              "width": 560,
+              "value": "https://mms.img.susercontent.com/vn-11134517-7ras8-m4e3bkh7qank59@resize_ss560x560!@crop_w560_h560_cT",
+              "height": 560
+            },
+            {
+              "width": 750,
+              "value": "https://mms.img.susercontent.com/vn-11134517-7ras8-m4e3bkh7qank59@resize_ss750x750!@crop_w750_h750_cT",
+              "height": 750
+            },
+            {
+              "width": 1242,
+              "value": "https://mms.img.susercontent.com/vn-11134517-7ras8-m4e3bkh7qank59@resize_ss1242x1242!@crop_w1242_h1242_cT",
+              "height": 1242
+            }
+          ],
+          "options": [],
+          "is_available": true,
+          "is_group_discount_item": true,
+          "time": {
+            "available": [],
+            "week_days": [
+              {
+                "start": "00:00",
+                "week_day": 1,
+                "end": "23:59"
+              },
+              {
+                "start": "00:00",
+                "week_day": 2,
+                "end": "23:59"
+              },
+              {
+                "start": "00:00",
+                "week_day": 3,
+                "end": "23:59"
+              },
+              {
+                "start": "00:00",
+                "week_day": 4,
+                "end": "23:59"
+              },
+              {
+                "start": "00:00",
+                "week_day": 5,
+                "end": "23:59"
+              },
+              {
+                "start": "00:00",
+                "week_day": 6,
+                "end": "23:59"
+              },
+              {
+                "start": "00:00",
+                "week_day": 7,
+                "end": "23:59"
+              }
+            ],
+            "not_available": []
+          },
+          "quantity": 0,
+          "id": 174739008,
+          "mms_image": "vn-11134517-7ras8-m4e3bkh7qank59",
+          "name": "Bì Thêm"
+        },
+        {
+          "is_deleted": false,
+          "description": "Gồm: Gà, sườn, Lạp xưởng, ốp la, bì.",
+          "price": {
+            "text": "70.000đ",
+            "unit": "đ",
+            "value": 70000
+          },
+          "is_active": true,
+          "display_order": 0,
+          "total_like": "2",
+          "properties": [],
+          "photos": [
+            {
+              "width": 120,
+              "value": "https://mms.img.susercontent.com/vn-11134517-7ras8-m3frc60ei20l20@resize_ss120x120!@crop_w120_h120_cT",
+              "height": 120
+            },
+            {
+              "width": 180,
+              "value": "https://mms.img.susercontent.com/vn-11134517-7ras8-m3frc60ei20l20@resize_ss180x180!@crop_w180_h180_cT",
+              "height": 180
+            },
+            {
+              "width": 400,
+              "value": "https://mms.img.susercontent.com/vn-11134517-7ras8-m3frc60ei20l20@resize_ss400x400!@crop_w400_h400_cT",
+              "height": 400
+            },
+            {
+              "width": 560,
+              "value": "https://mms.img.susercontent.com/vn-11134517-7ras8-m3frc60ei20l20@resize_ss560x560!@crop_w560_h560_cT",
+              "height": 560
+            },
+            {
+              "width": 750,
+              "value": "https://mms.img.susercontent.com/vn-11134517-7ras8-m3frc60ei20l20@resize_ss750x750!@crop_w750_h750_cT",
+              "height": 750
+            },
+            {
+              "width": 1242,
+              "value": "https://mms.img.susercontent.com/vn-11134517-7ras8-m3frc60ei20l20@resize_ss1242x1242!@crop_w1242_h1242_cT",
+              "height": 1242
+            }
+          ],
+          "options": [],
+          "is_available": true,
+          "is_group_discount_item": true,
+          "time": {
+            "available": [],
+            "week_days": [
+              {
+                "start": "00:00",
+                "week_day": 1,
+                "end": "23:59"
+              },
+              {
+                "start": "00:00",
+                "week_day": 2,
+                "end": "23:59"
+              },
+              {
+                "start": "00:00",
+                "week_day": 3,
+                "end": "23:59"
+              },
+              {
+                "start": "00:00",
+                "week_day": 4,
+                "end": "23:59"
+              },
+              {
+                "start": "00:00",
+                "week_day": 5,
+                "end": "23:59"
+              },
+              {
+                "start": "00:00",
+                "week_day": 6,
+                "end": "23:59"
+              },
+              {
+                "start": "00:00",
+                "week_day": 7,
+                "end": "23:59"
+              }
+            ],
+            "not_available": []
+          },
+          "quantity": 0,
+          "id": 173689416,
+          "mms_image": "vn-11134517-7ras8-m3frc60ei20l20",
+          "name": "CƠM TẤM ĐẶC BIỆT( tạo nên sự khác biệt)"
+        }
+      ]
+    }
+  ]
+}
