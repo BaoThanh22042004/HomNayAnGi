@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 import { getClientName, setClientName } from '@/lib/clientName';
 import { useToast } from '@/contexts/ToastContext';
+import { notifySelectionChange } from '@/lib/selectionEventBus';
 
 interface ClientNameInputProps {
     onNameSet?: (name: string) => void;
@@ -49,13 +50,14 @@ export default function ClientNameInput({
 
         try {
             const oldName = getClientName();
+            const newName = name.trim();
 
             // First update the name in localStorage
-            setClientName(name.trim());
+            setClientName(newName);
 
             // If this is an update (not initial setup) and we have an old name,
             // update the name in all existing selections
-            if (isUpdate && oldName && oldName !== name.trim()) {
+            if (isUpdate && oldName && oldName !== newName) {
                 const response = await fetch('/api/selections', {
                     method: 'PATCH',
                     headers: {
@@ -63,23 +65,29 @@ export default function ClientNameInput({
                     },
                     body: JSON.stringify({
                         oldName,
-                        newName: name.trim()
+                        newName
                     }),
                 });
 
                 if (!response.ok) {
                     throw new Error('Failed to update name in selections');
                 }
+                
+                // Add a small delay before notifying to ensure API operation completes
+                setTimeout(() => {
+                    // Notify about the change to refresh selection lists
+                    notifySelectionChange();
+                }, 100);
             }
 
             setIsOpen(false);
 
             if (onNameSet) {
-                onNameSet(name.trim());
+                onNameSet(newName);
             }
 
             // Show toast notification
-            showToast(`Tên đã được cập nhật thành ${name.trim()}`, 'info');
+            showToast(`Tên đã được cập nhật thành ${newName}`, 'info');
         } catch (err) {
             console.error('Error updating name:', err);
             setError('Failed to update name in all selections. Please try again.');

@@ -1,12 +1,13 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useCallback, useRef } from 'react';
 import { formatPrice } from '@/lib/utils';
 import { getClientName, subscribeToNameChanges } from '@/lib/clientName';
 import ClientNameInput from './ClientNameInput';
 import Image from 'next/image';
 import { SelectedDish } from '@/entities/menu';
 import { useToast } from '@/contexts/ToastContext';
+import { notifySelectionChange, subscribeToSelectionChanges } from '@/lib/selectionEventBus';
 
 export default function SelectedDishes() {
     const [selections, setSelections] = useState<SelectedDish[]>([]);
@@ -19,11 +20,38 @@ export default function SelectedDishes() {
     const [deleteError, setDeleteError] = useState('');
     const [isDeleting, setIsDeleting] = useState(false);
     const { showToast } = useToast();
+    
+    // Refs to track fetch status and pending requests
+    const lastFetchTimeRef = useRef<number>(0);
+    const fetchTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+    const isInitialFetchRef = useRef<boolean>(true);
+    const isMountedRef = useRef<boolean>(true);
 
-    // Function to fetch selected dishes
-    const fetchSelections = async () => {
-        try {
+    // Function to fetch selected dishes with advanced throttling
+    const fetchSelections = useCallback(async (options: { force?: boolean, quiet?: boolean } = {}) => {
+        const { force = false, quiet = false } = options;
+        const now = Date.now();
+        
+        // Skip if a fetch was done recently (within 3 seconds) unless forced
+        if (!force && now - lastFetchTimeRef.current < 3000) {
+            return;
+        }
+        
+        // Clear any pending fetch timeout to prevent duplicate requests
+        if (fetchTimeoutRef.current) {
+            clearTimeout(fetchTimeoutRef.current);
+            fetchTimeoutRef.current = null;
+        }
+        
+        // Only show loading state if this is the initial fetch and there are no selections yet
+        if (!quiet && isInitialFetchRef.current && selections.length === 0) {
             setLoading(true);
+        }
+        
+        try {
+            lastFetchTimeRef.current = now;
+            isInitialFetchRef.current = false;
+            
             const response = await fetch('/api/selections');
 
             if (!response.ok) {
@@ -31,15 +59,23 @@ export default function SelectedDishes() {
             }
 
             const data = await response.json();
-            setSelections(data);
-            setError(null);
+            
+            // Check if component is still mounted before updating state
+            if (isMountedRef.current) {
+                setSelections(data);
+                setError(null);
+            }
         } catch (err) {
-            setError('Could not load selections. Please try again.');
             console.error('Error fetching selections:', err);
+            if (isMountedRef.current && !quiet) {
+                setError('Could not load selections. Please try again.');
+            }
         } finally {
-            setLoading(false);
+            if (isMountedRef.current && !quiet) {
+                setLoading(false);
+            }
         }
-    };
+    }, [selections.length]);
 
     // Function to remove a selected dish
     const removeSelection = async (id: string) => {
@@ -54,8 +90,11 @@ export default function SelectedDishes() {
                 throw new Error(errorData.error || 'Failed to remove selection');
             }
 
-            // Update the local state by removing the deleted item
+            // Optimistically update the UI by removing the item locally
             setSelections(prev => prev.filter(s => s.id !== id));
+            
+            // Notify other components about the change
+            notifySelectionChange();
             
             // Show success toast
             showToast('Món đã được xóa thành công', 'success');
@@ -63,43 +102,78 @@ export default function SelectedDishes() {
             console.error('Error removing selection:', err);
             setError(err instanceof Error ? err.message : 'Failed to remove item. Please try again.');
             showToast(err instanceof Error ? err.message : 'Không thể xóa món. Vui lòng thử lại.', 'error');
+            
+            // Refresh selections if there was an error to ensure UI is consistent
+            fetchSelections({ force: true });
         }
     };
 
     // Update current client name when it changes
-    const updateClientName = () => {
+    const updateClientName = useCallback(() => {
         const storedName = getClientName();
         setCurrentClientName(storedName);
-    };
+    }, []);
 
-    // Fetch selections on component mount and set current client name
+    // Set up event listeners and fetch data on component mount
     useEffect(() => {
-        fetchSelections();
+        isMountedRef.current = true;
+        
+        // Initial fetch on mount
+        fetchSelections({ force: true });
         updateClientName();
 
         // Subscribe to client name changes
-        const unsubscribe = subscribeToNameChanges((newName) => {
-            setCurrentClientName(newName);
-            // Refresh selections after name change to ensure proper ownership
-            fetchSelections();
+        const nameUnsubscribe = subscribeToNameChanges((newName) => {
+            if (isMountedRef.current) {
+                setCurrentClientName(newName);
+                // Refresh selections after name change to ensure proper ownership
+                fetchSelections({ force: true });
+            }
         });
 
-        // Set up polling for updates every 5 seconds
-        const intervalId = setInterval(fetchSelections, 5000);
+        // Subscribe to selection changes from other components
+        const selectionUnsubscribe = subscribeToSelectionChanges(() => {
+            if (isMountedRef.current) {
+                // When notified about changes, schedule a fetch with a small delay
+                // This helps coalesce multiple rapid notifications into a single fetch
+                if (fetchTimeoutRef.current) {
+                    clearTimeout(fetchTimeoutRef.current);
+                }
+                
+                fetchTimeoutRef.current = setTimeout(() => {
+                    if (isMountedRef.current) {
+                        fetchSelections({ force: true, quiet: true });
+                    }
+                }, 300);
+            }
+        });
+
+        // Set up a very infrequent background polling (every 30 seconds)
+        // as a fallback to catch any missed updates from other users
+        const intervalId = setInterval(() => {
+            if (isMountedRef.current) {
+                fetchSelections({ quiet: true });
+            }
+        }, 30000);
 
         // Clean up on unmount
         return () => {
+            isMountedRef.current = false;
             clearInterval(intervalId);
-            unsubscribe();
+            if (fetchTimeoutRef.current) {
+                clearTimeout(fetchTimeoutRef.current);
+            }
+            nameUnsubscribe();
+            selectionUnsubscribe();
         };
-    }, []);
+    }, [fetchSelections, updateClientName]);
 
     // Handle name change
     const handleNameChange = () => {
         setShowNameInput(true);
     };
 
-    // Fix: Update handleNameSet to accept the name parameter
+    // Update handleNameSet to accept the name parameter
     const handleNameSet = (name: string) => {
         setShowNameInput(false);
         
@@ -107,7 +181,7 @@ export default function SelectedDishes() {
         setCurrentClientName(name);
         
         // Force a refresh of the selections to get updates with new name
-        fetchSelections();
+        fetchSelections({ force: true });
     };
 
     const handleOpenDeleteAllModal = () => {
@@ -136,9 +210,12 @@ export default function SelectedDishes() {
                 throw new Error(data.error || `Failed to delete all selections: ${response.status}`);
             }
 
-            // Clear selections and close modal
+            // Optimistically clear selections and close modal
             setSelections([]);
             setShowDeleteAllModal(false);
+            
+            // Notify other components about the change
+            notifySelectionChange();
             
             // Show success toast
             showToast('Tất cả món đã được xóa thành công', 'success');
