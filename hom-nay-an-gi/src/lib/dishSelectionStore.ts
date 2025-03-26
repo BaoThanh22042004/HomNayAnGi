@@ -1,4 +1,6 @@
 import { Dish } from "@/entities/menu";
+import fs from 'fs';
+import path from 'path';
 
 export interface SelectedOption {
     optionId: string;
@@ -22,15 +24,54 @@ export interface SelectedDish {
     clientName: string; // Add client name to track who selected the dish
 }
 
-// In-memory store for selected dishes (not persistent)
+// File-based store for selected dishes (persistent)
 class DishSelectionStore {
-    private selections: SelectedDish[] = [];
+    private filePath: string;
+    
+    constructor() {
+        // Store selections in data directory
+        this.filePath = path.join(process.cwd(), 'src', 'data', 'selections.json');
+        
+        // Ensure the file exists
+        this.ensureFileExists();
+    }
+    
+    private ensureFileExists(): void {
+        try {
+            if (!fs.existsSync(this.filePath)) {
+                // Create an empty selections array if file doesn't exist
+                fs.writeFileSync(this.filePath, JSON.stringify([], null, 2), 'utf8');
+            }
+        } catch (error) {
+            console.error('Error ensuring selections file exists:', error);
+        }
+    }
+    
+    private readSelectionsFromFile(): SelectedDish[] {
+        try {
+            const data = fs.readFileSync(this.filePath, 'utf8');
+            return JSON.parse(data) as SelectedDish[];
+        } catch (error) {
+            console.error('Error reading selections from file:', error);
+            return [];
+        }
+    }
+    
+    private writeSelectionsToFile(selections: SelectedDish[]): void {
+        try {
+            fs.writeFileSync(this.filePath, JSON.stringify(selections, null, 2), 'utf8');
+        } catch (error) {
+            console.error('Error writing selections to file:', error);
+        }
+    }
 
     getAllSelections(): SelectedDish[] {
-        return [...this.selections];
+        return this.readSelectionsFromFile();
     }
 
     addSelection(dish: Dish, clientName: string, selectedOptions: SelectedOption[] = [], quantity: number = 1): SelectedDish {
+        const selections = this.readSelectionsFromFile();
+        
         // Calculate the total price including options
         let totalPrice = dish.discount_price ? dish.discount_price.value : dish.price.value;
 
@@ -60,25 +101,34 @@ class DishSelectionStore {
             clientName
         };
 
-        this.selections.push(selection);
+        selections.push(selection);
+        this.writeSelectionsToFile(selections);
         return selection;
     }
 
     removeSelection(id: string): boolean {
-        const initialLength = this.selections.length;
-        this.selections = this.selections.filter(s => s.id !== id);
-        return this.selections.length < initialLength;
+        const selections = this.readSelectionsFromFile();
+        const initialLength = selections.length;
+        const newSelections = selections.filter(s => s.id !== id);
+        
+        if (newSelections.length < initialLength) {
+            this.writeSelectionsToFile(newSelections);
+            return true;
+        }
+        
+        return false;
     }
 
     clearAllSelections(): void {
-        this.selections = [];
+        this.writeSelectionsToFile([]);
     }
 
     // Add a method to update client name in all selections
     updateClientName(oldName: string, newName: string): number {
+        const selections = this.readSelectionsFromFile();
         let updatedCount = 0;
 
-        this.selections = this.selections.map(selection => {
+        const updatedSelections = selections.map(selection => {
             if (selection.clientName === oldName) {
                 updatedCount++;
                 return { ...selection, clientName: newName };
@@ -86,6 +136,10 @@ class DishSelectionStore {
             return selection;
         });
 
+        if (updatedCount > 0) {
+            this.writeSelectionsToFile(updatedSelections);
+        }
+        
         return updatedCount;
     }
 }

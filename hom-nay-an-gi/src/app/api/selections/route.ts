@@ -4,8 +4,16 @@ import { getEateryMenu } from "@/lib/api";
 
 // GET - Retrieve all selections
 export async function GET() {
-    const selections = dishSelectionStore.getAllSelections();
-    return NextResponse.json(selections);
+    try {
+        const selections = dishSelectionStore.getAllSelections();
+        return NextResponse.json(selections);
+    } catch (error) {
+        console.error("Error getting selections:", error);
+        return NextResponse.json(
+            { error: "Failed to load selections" },
+            { status: 500 }
+        );
+    }
 }
 
 // POST - Add a new selection
