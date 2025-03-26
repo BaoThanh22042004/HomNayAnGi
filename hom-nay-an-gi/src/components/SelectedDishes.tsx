@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react';
 import { SelectedDish } from '@/lib/dishSelectionStore';
 import { formatPrice } from '@/lib/utils';
-import { getClientName } from '@/lib/clientName';
+import { getClientName, subscribeToNameChanges } from '@/lib/clientName';
 import ClientNameInput from './ClientNameInput';
 import Image from 'next/image';
 
@@ -67,11 +67,21 @@ export default function SelectedDishes() {
         fetchSelections();
         updateClientName();
 
+        // Subscribe to client name changes
+        const unsubscribe = subscribeToNameChanges((newName) => {
+            setCurrentClientName(newName);
+            // Refresh selections after name change to ensure proper ownership
+            fetchSelections();
+        });
+
         // Set up polling for updates every 5 seconds
         const intervalId = setInterval(fetchSelections, 5000);
 
         // Clean up on unmount
-        return () => clearInterval(intervalId);
+        return () => {
+            clearInterval(intervalId);
+            unsubscribe();
+        };
     }, []);
 
     // Handle name change
@@ -79,14 +89,15 @@ export default function SelectedDishes() {
         setShowNameInput(true);
     };
 
-    const handleNameSet = () => {
+    // Fix: Update handleNameSet to accept the name parameter
+    const handleNameSet = (name: string) => {
         setShowNameInput(false);
-
+        
+        // Update current client name in state
+        setCurrentClientName(name);
+        
         // Force a refresh of the selections to get updates with new name
         fetchSelections();
-
-        // Update the current client name
-        updateClientName();
     };
 
     // Calculate total price
