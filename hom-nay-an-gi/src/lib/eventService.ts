@@ -13,11 +13,8 @@ export const connectedClients = new Set<{
  */
 export function broadcastSelectionUpdate() {
   if (connectedClients.size === 0) {
-    console.log('No connected clients to notify');
     return;
   }
-  
-  console.log(`Broadcasting update to ${connectedClients.size} connected clients`);
   
   // Create a properly formatted SSE message with explicit event name
   const message = `event: selection-update\ndata: ${JSON.stringify({ 
@@ -34,8 +31,7 @@ export function broadcastSelectionUpdate() {
   connectedClients.forEach(client => {
     try {
       client.controller.enqueue(event);
-    } catch (error) {
-      console.error(`Failed to send to client ${client.id}:`, error);
+    } catch {
       deadClients.add(client.id);
     }
   });
@@ -48,6 +44,5 @@ export function broadcastSelectionUpdate() {
         connectedClients.delete(client);
       }
     }
-    console.log(`Cleaned up ${deadClients.size} dead connections, remaining: ${connectedClients.size}`);
   }
 }

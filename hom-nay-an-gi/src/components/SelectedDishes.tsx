@@ -84,8 +84,6 @@ export default function SelectedDishes() {
 
     // Subscribe to real-time updates via SSE
     useSelectionSync(() => {
-        console.log('Selection update event received! Fetching latest data...');
-        
         // Add a small delay to ensure database writes have completed
         setTimeout(() => {
             fetchSelections({ force: true, quiet: true });

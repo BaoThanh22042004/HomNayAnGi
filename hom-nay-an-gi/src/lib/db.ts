@@ -33,7 +33,6 @@ export async function initializeDb() {
           note TEXT
         )
       `;
-      console.log('Selections table created successfully');
     } else {
       // Check if the note column exists
       const checkColumnResult = await sql`
@@ -48,11 +47,9 @@ export async function initializeDb() {
       // Add the note column if it doesn't exist
       if (!columnExists) {
         await sql`ALTER TABLE selections ADD COLUMN note TEXT`;
-        console.log('Note column added to selections table');
       }
     }
     
-    console.log('Database initialized successfully');
   } catch (error) {
     console.error('Error initializing database:', error);
   }

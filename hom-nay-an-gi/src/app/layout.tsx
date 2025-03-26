@@ -3,7 +3,6 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import { ToastProvider } from "@/contexts/ToastContext";
 import SelectedDishesWrapper from "@/components/SelectedDishesWrapper";
-import SseDebugger from "@/components/SseDebugger";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -12,13 +11,11 @@ export const metadata: Metadata = {
   description: "Ứng dụng giúp bạn chọn món ăn mỗi ngày",
 };
 
-// Use a server component for initial data prefetching
 export default function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
-
   return (
     <html lang="vi">
       <head>
@@ -51,9 +48,6 @@ export default function RootLayout({
               &copy; {new Date().getFullYear()} Hôm Nay Ăn Gì?
             </div>
           </footer>
-
-          {/* Add the debug component at the end */}
-          {process.env.NODE_ENV !== 'production' && <SseDebugger />}
         </ToastProvider>
       </body>
     </html>
