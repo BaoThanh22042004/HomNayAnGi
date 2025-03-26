@@ -10,6 +10,7 @@ function getBaseUrl() {
 
     // Server-side rendering must use absolute URL
     const vercelUrl = process.env.VERCEL_URL;
+    console.log('vercelUrl:', vercelUrl);
     if (vercelUrl) {
         return `https://${vercelUrl}`;
     }
