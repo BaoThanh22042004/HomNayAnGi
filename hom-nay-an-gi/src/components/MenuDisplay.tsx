@@ -258,7 +258,7 @@ function DishCard({ dish, dataPath }: { dish: Dish; dataPath: string }) {
                     </div>
                 )}
                 <div className="p-4">
-                    <h3 className="text-lg font-semibold mb-1">{dish.name}</h3>
+                    <h3 className="text-lg font-semibold mb-1 text-black">{dish.name}</h3>
                     {dish.description && (
                         <p className="text-sm text-gray-600 mb-2">{dish.description}</p>
                     )}
@@ -301,7 +301,7 @@ function DishCard({ dish, dataPath }: { dish: Dish; dataPath: string }) {
                     <div className="bg-white rounded-lg max-w-md w-full max-h-[80vh] overflow-auto">
                         <div className="p-4 border-b sticky top-0 bg-white z-10">
                             <div className="flex justify-between items-center">
-                                <h3 className="text-lg font-bold">{dish.name}</h3>
+                                <h3 className="text-lg font-bold text-black">{dish.name}</h3>
                                 <button
                                     onClick={closeModal}
                                     className="text-gray-500 hover:text-gray-700"
@@ -319,7 +319,7 @@ function DishCard({ dish, dataPath }: { dish: Dish; dataPath: string }) {
                         <div className="p-4">
                             {dish.options.map((option, optionIndex) => (
                                 <div key={optionIndex} className="mb-4">
-                                    <h4 className="font-medium mb-2">
+                                    <h4 className="font-medium mb-2 text-black">
                                         {option.name}
                                         {option.min_select > 0 && (
                                             <span className="text-red-600 ml-1 text-sm">
@@ -342,7 +342,7 @@ function DishCard({ dish, dataPath }: { dish: Dish; dataPath: string }) {
                                                     />
                                                     <label
                                                         htmlFor={`${option.name}-${item.name}-${itemIndex}`}
-                                                        className={`flex justify-between w-full ${isSelected ? 'font-medium' : ''}`}
+                                                        className={`flex justify-between w-full text-black ${isSelected ? 'font-medium' : ''}`}
                                                     >
                                                         <span>{item.name}</span>
                                                         {item.price.value > 0 && (
@@ -359,13 +359,13 @@ function DishCard({ dish, dataPath }: { dish: Dish; dataPath: string }) {
                             ))}
 
                             <div className="mb-4">
-                                <h4 className="font-medium mb-2">Số lượng</h4>
-                                <div className="flex items-center">
+                                <h4 className="font-medium mb-2 text-black">Số lượng</h4>
+                                <div className="flex items-center text-black">
                                     <button
                                         onClick={() => setQuantity(prev => Math.max(1, prev - 1))}
-                                        className="px-2 py-1 border rounded-l"
+                                        className="px-2 border rounded-l"
                                     >
-                                        -
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" className="w-4"><path d="M5 12h14"/></svg>
                                     </button>
                                     <input
                                         type="number"
@@ -376,9 +376,9 @@ function DishCard({ dish, dataPath }: { dish: Dish; dataPath: string }) {
                                     />
                                     <button
                                         onClick={() => setQuantity(prev => prev + 1)}
-                                        className="px-2 py-1 border rounded-r"
+                                        className="px-2 border rounded-r"
                                     >
-                                        +
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" className="w-4"><path d="M5 12h14"/><path d="M12 5v14"/></svg>
                                     </button>
                                 </div>
                             </div>

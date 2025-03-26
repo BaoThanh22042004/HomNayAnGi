@@ -3,7 +3,7 @@ import "./globals.css";
 import SelectedDishesWrapper from "@/components/SelectedDishesWrapper";
 
 export const metadata: Metadata = {
-  title: "Hôm Nay Ăn Gì",
+  title: "Hôm Nay Ăn Gì?",
   description: "Ứng dụng giúp bạn chọn món ăn mỗi ngày",
 };
 
@@ -17,7 +17,7 @@ export default function RootLayout({
       <body className="bg-gray-50 min-h-screen">
         <header className="bg-red-600 text-white py-4">
           <div className="container mx-auto px-4">
-            <h1 className="text-2xl font-bold">Hôm Nay Ăn Gì</h1>
+            <h1 className="text-2xl font-bold">Hôm Nay Ăn Gì?</h1>
           </div>
         </header>
 
@@ -33,7 +33,7 @@ export default function RootLayout({
 
         <footer className="bg-gray-100 py-6 mt-12">
           <div className="container mx-auto px-4 text-center text-gray-600 text-sm">
-            &copy; {new Date().getFullYear()} Hôm Nay Ăn Gì
+            &copy; {new Date().getFullYear()} Hôm Nay Ăn Gì?
           </div>
         </footer>
       </body>
