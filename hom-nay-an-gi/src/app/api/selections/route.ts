@@ -5,7 +5,7 @@ import { getEateryMenu } from "@/lib/api";
 // GET - Retrieve all selections
 export async function GET() {
     try {
-        const selections = dishSelectionStore.getAllSelections();
+        const selections = await dishSelectionStore.getAllSelections();
         return NextResponse.json(selections);
     } catch (error) {
         console.error("Error getting selections:", error);
@@ -49,7 +49,7 @@ export async function POST(request: NextRequest) {
         }
 
         // Add the selection
-        const selection = dishSelectionStore.addSelection(
+        const selection = await dishSelectionStore.addSelection(
             targetDish,
             clientName,
             selectedOptions,
@@ -88,7 +88,7 @@ export async function DELETE(request: NextRequest) {
         }
 
         // Get the selection to check ownership
-        const allSelections = dishSelectionStore.getAllSelections();
+        const allSelections = await dishSelectionStore.getAllSelections();
         const targetSelection = allSelections.find(s => s.id === id);
 
         if (!targetSelection) {
@@ -106,7 +106,7 @@ export async function DELETE(request: NextRequest) {
             );
         }
 
-        const removed = dishSelectionStore.removeSelection(id);
+        const removed = await dishSelectionStore.removeSelection(id);
 
         if (!removed) {
             return NextResponse.json(
@@ -138,7 +138,7 @@ export async function PATCH(request: NextRequest) {
             );
         }
 
-        const updatedCount = dishSelectionStore.updateClientName(oldName, newName);
+        const updatedCount = await dishSelectionStore.updateClientName(oldName, newName);
 
         return NextResponse.json({
             success: true,

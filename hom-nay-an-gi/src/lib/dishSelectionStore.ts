@@ -1,6 +1,7 @@
 import { Dish } from "@/entities/menu";
-import fs from 'fs';
-import path from 'path';
+import { db, initializeDb } from './db';
+import { eq } from 'drizzle-orm';
+import { selections } from "@/db/schema";
 
 export interface SelectedOption {
     optionId: string;
@@ -24,123 +25,133 @@ export interface SelectedDish {
     clientName: string; // Add client name to track who selected the dish
 }
 
-// File-based store for selected dishes (persistent)
+// Database store for selected dishes using Drizzle ORM
 class DishSelectionStore {
-    private filePath: string;
+    private dbInitialized: boolean = false;
     
     constructor() {
-        // Store selections in data directory
-        this.filePath = path.join(process.cwd(), 'src', 'data', 'selections.json');
-        
-        // Ensure the file exists
-        this.ensureFileExists();
+        // Initialize database
+        this.initDatabase();
     }
     
-    private ensureFileExists(): void {
+    private async initDatabase(): Promise<void> {
         try {
-            if (!fs.existsSync(this.filePath)) {
-                // Create an empty selections array if file doesn't exist
-                fs.writeFileSync(this.filePath, JSON.stringify([], null, 2), 'utf8');
-            }
+            await initializeDb();
+            this.dbInitialized = true;
         } catch (error) {
-            console.error('Error ensuring selections file exists:', error);
+            console.error('Error initializing database:', error);
+            this.dbInitialized = false;
         }
     }
     
-    private readSelectionsFromFile(): SelectedDish[] {
+    async getAllSelections(): Promise<SelectedDish[]> {
         try {
-            const data = fs.readFileSync(this.filePath, 'utf8');
-            return JSON.parse(data) as SelectedDish[];
+            // Use Drizzle ORM select
+            const result = await db.select().from(selections).orderBy(selections.timestamp);
+            
+            return result.map(row => ({
+                id: row.id,
+                dishId: Number(row.dishId),
+                name: row.name,
+                price: Number(row.price),
+                photoUrl: row.photoUrl,
+                quantity: row.quantity,
+                timestamp: row.timestamp,
+                clientName: row.clientName,
+                selectedOptions: row.selectedOptions as SelectedOption[]
+            }));
         } catch (error) {
-            console.error('Error reading selections from file:', error);
+            console.error('Error reading selections from database:', error);
             return [];
         }
     }
-    
-    private writeSelectionsToFile(selections: SelectedDish[]): void {
+
+    async addSelection(dish: Dish, clientName: string, selectedOptions: SelectedOption[] = [], quantity: number = 1): Promise<SelectedDish> {
         try {
-            fs.writeFileSync(this.filePath, JSON.stringify(selections, null, 2), 'utf8');
-        } catch (error) {
-            console.error('Error writing selections to file:', error);
-        }
-    }
+            // Calculate the total price including options
+            let totalPrice = dish.discount_price ? dish.discount_price.value : dish.price.value;
 
-    getAllSelections(): SelectedDish[] {
-        return this.readSelectionsFromFile();
-    }
-
-    addSelection(dish: Dish, clientName: string, selectedOptions: SelectedOption[] = [], quantity: number = 1): SelectedDish {
-        const selections = this.readSelectionsFromFile();
-        
-        // Calculate the total price including options
-        let totalPrice = dish.discount_price ? dish.discount_price.value : dish.price.value;
-
-        // Add option prices
-        selectedOptions.forEach(option => {
-            option.selectedItems.forEach(item => {
-                totalPrice += item.price;
+            // Add option prices
+            selectedOptions.forEach(option => {
+                option.selectedItems.forEach(item => {
+                    totalPrice += item.price;
+                });
             });
-        });
 
-        // Multiply by quantity
-        totalPrice *= quantity;
+            // Multiply by quantity
+            totalPrice *= quantity;
 
-        const photoUrl = dish.photos.length > 0
-            ? dish.photos.find(p => p.width >= 400)?.value || dish.photos[0].value
-            : null;
+            const photoUrl = dish.photos.length > 0
+                ? dish.photos.find(p => p.width >= 400)?.value || dish.photos[0].value
+                : null;
 
-        const selection: SelectedDish = {
-            id: `${Date.now()}-${Math.random().toString(36).substr(2, 9)}`,
-            dishId: dish.id,
-            name: dish.name,
-            price: totalPrice,
-            photoUrl,
-            quantity,
-            selectedOptions,
-            timestamp: Date.now(),
-            clientName
-        };
+            const selection: SelectedDish = {
+                id: `${Date.now()}-${Math.random().toString(36).substr(2, 9)}`,
+                dishId: dish.id,
+                name: dish.name,
+                price: totalPrice,
+                photoUrl,
+                quantity,
+                selectedOptions,
+                timestamp: Date.now(),
+                clientName
+            };
 
-        selections.push(selection);
-        this.writeSelectionsToFile(selections);
-        return selection;
-    }
+            // Use Drizzle ORM insert
+            await db.insert(selections).values({
+                id: selection.id,
+                dishId: selection.dishId,
+                name: selection.name,
+                price: selection.price.toString(),
+                photoUrl: selection.photoUrl,
+                quantity: selection.quantity,
+                timestamp: selection.timestamp,
+                clientName: selection.clientName,
+                selectedOptions: selection.selectedOptions
+            });
 
-    removeSelection(id: string): boolean {
-        const selections = this.readSelectionsFromFile();
-        const initialLength = selections.length;
-        const newSelections = selections.filter(s => s.id !== id);
-        
-        if (newSelections.length < initialLength) {
-            this.writeSelectionsToFile(newSelections);
-            return true;
-        }
-        
-        return false;
-    }
-
-    clearAllSelections(): void {
-        this.writeSelectionsToFile([]);
-    }
-
-    // Add a method to update client name in all selections
-    updateClientName(oldName: string, newName: string): number {
-        const selections = this.readSelectionsFromFile();
-        let updatedCount = 0;
-
-        const updatedSelections = selections.map(selection => {
-            if (selection.clientName === oldName) {
-                updatedCount++;
-                return { ...selection, clientName: newName };
-            }
             return selection;
-        });
-
-        if (updatedCount > 0) {
-            this.writeSelectionsToFile(updatedSelections);
+        } catch (error) {
+            console.error('Error adding selection to database:', error);
+            throw error;
         }
-        
-        return updatedCount;
+    }
+
+    async removeSelection(id: string): Promise<boolean> {
+        try {
+            // Use Drizzle ORM delete
+            const result = await db.delete(selections)
+                .where(eq(selections.id, id));
+            
+            return (result.rowCount ?? 0) > 0;
+        } catch (error) {
+            console.error('Error removing selection from database:', error);
+            return false;
+        }
+    }
+
+    async clearAllSelections(): Promise<void> {
+        try {
+            // Use Drizzle ORM delete all
+            await db.delete(selections);
+        } catch (error) {
+            console.error('Error clearing selections from database:', error);
+        }
+    }
+
+    // Update client name in all selections
+    async updateClientName(oldName: string, newName: string): Promise<number> {
+        try {
+            // Use Drizzle ORM update
+            const result = await db.update(selections)
+                .set({ clientName: newName })
+                .where(eq(selections.clientName, oldName));
+            
+            return result.rowCount ?? 0;
+        } catch (error) {
+            console.error('Error updating client name in database:', error);
+            return 0;
+        }
     }
 }
 
