@@ -1,5 +1,5 @@
 import { randomUUID } from 'crypto';
-import { SelectedDish, SelectedOption, Dish } from '@/entities/menu';
+import { SelectedOption, Dish } from '@/entities/menu';
 
 interface Selection {
   id: string;

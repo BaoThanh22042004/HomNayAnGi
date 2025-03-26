@@ -6,6 +6,7 @@ import { getClientName, subscribeToNameChanges } from '@/lib/clientName';
 import ClientNameInput from './ClientNameInput';
 import Image from 'next/image';
 import { SelectedDish } from '@/entities/menu';
+import { useToast } from '@/contexts/ToastContext';
 
 export default function SelectedDishes() {
     const [selections, setSelections] = useState<SelectedDish[]>([]);
@@ -17,6 +18,7 @@ export default function SelectedDishes() {
     const [deletePassword, setDeletePassword] = useState('');
     const [deleteError, setDeleteError] = useState('');
     const [isDeleting, setIsDeleting] = useState(false);
+    const { showToast } = useToast();
 
     // Function to fetch selected dishes
     const fetchSelections = async () => {
@@ -54,9 +56,13 @@ export default function SelectedDishes() {
 
             // Update the local state by removing the deleted item
             setSelections(prev => prev.filter(s => s.id !== id));
+            
+            // Show success toast
+            showToast('Món đã được xóa thành công', 'success');
         } catch (err) {
             console.error('Error removing selection:', err);
             setError(err instanceof Error ? err.message : 'Failed to remove item. Please try again.');
+            showToast(err instanceof Error ? err.message : 'Không thể xóa món. Vui lòng thử lại.', 'error');
         }
     };
 
@@ -133,8 +139,12 @@ export default function SelectedDishes() {
             // Clear selections and close modal
             setSelections([]);
             setShowDeleteAllModal(false);
+            
+            // Show success toast
+            showToast('Tất cả món đã được xóa thành công', 'success');
         } catch (err) {
             setDeleteError(err instanceof Error ? err.message : 'Failed to delete selections. Please try again.');
+            showToast(err instanceof Error ? err.message : 'Không thể xóa tất cả món. Vui lòng thử lại.', 'error');
         } finally {
             setIsDeleting(false);
         }

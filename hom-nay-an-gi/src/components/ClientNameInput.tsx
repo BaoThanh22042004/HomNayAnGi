@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { getClientName, setClientName } from '@/lib/clientName';
+import { useToast } from '@/contexts/ToastContext';
 
 interface ClientNameInputProps {
     onNameSet?: (name: string) => void;
@@ -18,6 +19,7 @@ export default function ClientNameInput({
     const [isOpen, setIsOpen] = useState(false);
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [error, setError] = useState<string | null>(null);
+    const { showToast } = useToast();
 
     useEffect(() => {
         // For new name input, check if client name exists
@@ -75,6 +77,9 @@ export default function ClientNameInput({
             if (onNameSet) {
                 onNameSet(name.trim());
             }
+
+            // Show toast notification
+            showToast(`Tên đã được cập nhật thành ${name.trim()}`, 'info');
         } catch (err) {
             console.error('Error updating name:', err);
             setError('Failed to update name in all selections. Please try again.');

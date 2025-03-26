@@ -5,6 +5,7 @@ import { useState, useEffect } from "react";
 import { getClientName, hasClientName, setClientName } from "@/lib/clientName";
 import ClientNameInput from "./ClientNameInput";
 import Image from "next/image";
+import { useToast } from "@/contexts/ToastContext";
 
 interface MenuDisplayProps {
     menuInfos: MenuInfos;
@@ -53,6 +54,7 @@ function DishCard({ dish, dataPath }: { dish: Dish; dataPath: string }) {
     const [error, setError] = useState<string | null>(null);
     const [isNameInputOpen, setIsNameInputOpen] = useState(false);
     const [isSimpleModalOpen, setIsSimpleModalOpen] = useState(false);
+    const { showToast } = useToast();
 
     useEffect(() => {
         // Try to get client name from localStorage on component mount
@@ -247,12 +249,13 @@ function DishCard({ dish, dataPath }: { dish: Dish; dataPath: string }) {
                 closeSimpleModal();
             }
 
-            // Show temporary success message
-            alert('Dish added to selections!');
+            // Show toast notification instead of alert
+            showToast(`${dish.name} đã được thêm vào giỏ!`, 'success');
 
         } catch (err) {
             console.error('Error adding selection:', err);
             setError('Failed to add selection. Please try again.');
+            showToast('Không thể thêm món. Vui lòng thử lại.', 'error');
         } finally {
             setIsSubmitting(false);
         }
