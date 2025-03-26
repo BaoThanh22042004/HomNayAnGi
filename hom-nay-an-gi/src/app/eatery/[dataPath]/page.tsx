@@ -3,11 +3,8 @@ import MenuDisplay from "@/components/MenuDisplay";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 
-interface EateryPageProps {
-    params: {
-        dataPath: string;
-    }
-}
+// Define the type for params as a Promise
+type Params = Promise<{ dataPath: string }>;
 
 export async function generateStaticParams() {
     const eateries = await getEateries();
@@ -17,8 +14,9 @@ export async function generateStaticParams() {
     }));
 }
 
-export default async function EateryPage({ params }: EateryPageProps) {
-    const decodedDataPath = decodeURIComponent((await params).dataPath);
+export default async function EateryPage({ params }: { params: Params }) {
+    const { dataPath } = await params;
+    const decodedDataPath = decodeURIComponent(dataPath);
     const menuInfos = await getEateryMenu(decodedDataPath);
 
     // Get all eateries to find the current eatery name

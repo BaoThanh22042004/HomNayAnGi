@@ -5,6 +5,7 @@ import { SelectedDish } from '@/lib/dishSelectionStore';
 import { formatPrice } from '@/lib/utils';
 import { getClientName } from '@/lib/clientName';
 import ClientNameInput from './ClientNameInput';
+import Image from 'next/image';
 
 export default function SelectedDishes() {
     const [selections, setSelections] = useState<SelectedDish[]>([]);
@@ -78,7 +79,7 @@ export default function SelectedDishes() {
         setShowNameInput(true);
     };
 
-    const handleNameSet = (name: string) => {
+    const handleNameSet = () => {
         setShowNameInput(false);
 
         // Force a refresh of the selections to get updates with new name
@@ -133,10 +134,12 @@ export default function SelectedDishes() {
                             <li key={selection.id} className={`p-4 hover:bg-gray-50 ${selection.clientName === currentClientName ? 'bg-yellow-50' : ''}`}>
                                 <div className="flex items-start gap-3">
                                     {selection.photoUrl && (
-                                        <img
+                                        <Image
                                             src={selection.photoUrl}
                                             alt={selection.name}
                                             className="w-16 h-16 object-cover rounded"
+                                            width={200}
+                                            height={150}
                                         />
                                     )}
                                     <div className="flex-1 min-w-0">

@@ -5,7 +5,7 @@ import path from "path";
 import { NextRequest } from "next/server";
 
 // Tạo hàm helper để tạo response JSON
-const createJsonResponse = (data: any) => {
+const createJsonResponse = <T>(data: T) => {
   return new Response(JSON.stringify(data), {
     headers: {
       "content-type": "application/json",

@@ -1,4 +1,4 @@
-import { Dish, Option, OptionItem } from "@/entities/menu";
+import { Dish } from "@/entities/menu";
 
 export interface SelectedOption {
     optionId: string;

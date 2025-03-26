@@ -1,12 +1,12 @@
 'use client';
 
-import { MenuInfos, DishType, Dish, Option, OptionItem } from "@/entities/menu";
+import { MenuInfos, DishType, Dish } from "@/entities/menu";
 import { useState, useEffect } from "react";
 import { formatPrice } from "@/lib/utils";
 import { SelectedOption } from "@/lib/dishSelectionStore";
-import Image from "next/image";
-import { getClientName, hasClientName } from "@/lib/clientName";
+import { getClientName, hasClientName, setClientName } from "@/lib/clientName";
 import ClientNameInput from "./ClientNameInput";
+import Image from "next/image";
 
 interface MenuDisplayProps {
     menuInfos: MenuInfos;
@@ -52,13 +52,14 @@ function DishCard({ dish, dataPath }: { dish: Dish; dataPath: string }) {
     const [quantity, setQuantity] = useState(1);
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [error, setError] = useState<string | null>(null);
-    const [selectionUpdateCounter, setSelectionUpdateCounter] = useState(0);
-    const [clientName, setClientName] = useState<string | null>(null);
     const [isNameInputOpen, setIsNameInputOpen] = useState(false);
 
     useEffect(() => {
         // Try to get client name from localStorage on component mount
-        setClientName(getClientName());
+        const clientName = getClientName();
+        if (clientName) {
+            setClientName(clientName);
+        }
     }, []);
 
     const photoUrl = dish.photos.length > 0
@@ -144,8 +145,6 @@ function DishCard({ dish, dataPath }: { dish: Dish; dataPath: string }) {
                 }
             }
 
-            // Increment counter to force re-render
-            setSelectionUpdateCounter(prev => prev + 1);
             return newMap;
         });
     };
@@ -250,10 +249,13 @@ function DishCard({ dish, dataPath }: { dish: Dish; dataPath: string }) {
             <div className="bg-white rounded-lg shadow-md overflow-hidden">
                 {photoUrl && (
                     <div className="relative h-48 w-full">
-                        <img
+                        <Image
                             src={photoUrl}
                             alt={dish.name}
                             className="object-cover w-full h-full"
+                            width={500}
+                            height={300}
+                            unoptimized={photoUrl?.startsWith('data:') || false}
                         />
                     </div>
                 )}
@@ -365,7 +367,7 @@ function DishCard({ dish, dataPath }: { dish: Dish; dataPath: string }) {
                                         onClick={() => setQuantity(prev => Math.max(1, prev - 1))}
                                         className="px-2 border rounded-l"
                                     >
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" className="w-4"><path d="M5 12h14"/></svg>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" className="w-4"><path d="M5 12h14" /></svg>
                                     </button>
                                     <input
                                         type="number"
@@ -378,7 +380,7 @@ function DishCard({ dish, dataPath }: { dish: Dish; dataPath: string }) {
                                         onClick={() => setQuantity(prev => prev + 1)}
                                         className="px-2 border rounded-r"
                                     >
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" className="w-4"><path d="M5 12h14"/><path d="M12 5v14"/></svg>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" className="w-4"><path d="M5 12h14" /><path d="M12 5v14" /></svg>
                                     </button>
                                 </div>
                             </div>

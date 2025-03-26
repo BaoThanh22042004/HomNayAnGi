@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { getClientName, setClientName, hasClientName } from '@/lib/clientName';
+import { getClientName, setClientName } from '@/lib/clientName';
 
 interface ClientNameInputProps {
     onNameSet?: (name: string) => void;

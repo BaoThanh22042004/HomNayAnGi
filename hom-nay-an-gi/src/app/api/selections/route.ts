@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { dishSelectionStore, SelectedOption } from "@/lib/dishSelectionStore";
+import { dishSelectionStore } from "@/lib/dishSelectionStore";
 import { getEateryMenu } from "@/lib/api";
 
 // GET - Retrieve all selections
