@@ -2,6 +2,10 @@ import { NextRequest, NextResponse } from "next/server";
 import { dishSelectionStore } from "@/lib/dishSelectionStore";
 import { getEateryMenu } from "@/lib/api";
 import { initializeDb } from "@/lib/db";
+import { broadcastSelectionUpdate } from "@/lib/eventService";
+
+export const dynamic = 'force-dynamic';
+export const fetchCache = 'force-no-store';
 
 // Initialize database on first API call
 let initialized = false;
@@ -18,7 +22,11 @@ export async function GET() {
   try {
     await ensureInitialized();
     const selections = await dishSelectionStore.getAllSelections();
-    return NextResponse.json(selections);
+    return NextResponse.json(selections, {
+      headers: {
+        'Cache-Control': 'no-store, max-age=0',
+      }
+    });
   } catch (error) {
     console.error("Error getting selections:", error);
     return NextResponse.json(
@@ -70,7 +78,14 @@ export async function POST(request: NextRequest) {
       note
     );
 
-    return NextResponse.json(selection);
+    // Broadcast update to all connected clients
+    broadcastSelectionUpdate();
+
+    return NextResponse.json(selection, {
+      headers: {
+        'Cache-Control': 'no-store, max-age=0',
+      }
+    });
   } catch (error) {
     console.error("Error adding selection:", error);
     return NextResponse.json(
@@ -101,7 +116,13 @@ export async function DELETE(request: NextRequest) {
       }
       
       await dishSelectionStore.removeAllSelections();
-      return NextResponse.json({ success: true });
+      
+      // Broadcast update to all connected clients
+      broadcastSelectionUpdate();
+      
+      return NextResponse.json({ success: true }, {
+        headers: { 'Cache-Control': 'no-store, max-age=0' }
+      });
     }
 
     if (!id) {
@@ -146,7 +167,12 @@ export async function DELETE(request: NextRequest) {
       );
     }
 
-    return NextResponse.json({ success: true });
+    // Broadcast update to all connected clients
+    broadcastSelectionUpdate();
+
+    return NextResponse.json({ success: true }, {
+      headers: { 'Cache-Control': 'no-store, max-age=0' }
+    });
   } catch (error) {
     console.error("Error removing selection:", error);
     return NextResponse.json(
@@ -171,6 +197,9 @@ export async function PATCH(request: NextRequest) {
     }
 
     const updatedCount = await dishSelectionStore.updateClientName(oldName, newName);
+
+    // Broadcast update to all connected clients
+    broadcastSelectionUpdate();
 
     return NextResponse.json({
       success: true,

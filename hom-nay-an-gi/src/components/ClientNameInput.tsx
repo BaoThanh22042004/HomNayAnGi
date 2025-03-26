@@ -3,7 +3,6 @@
 import { useState, useEffect } from 'react';
 import { getClientName, setClientName } from '@/lib/clientName';
 import { useToast } from '@/contexts/ToastContext';
-import { notifySelectionChange } from '@/lib/selectionEventBus';
 
 interface ClientNameInputProps {
     onNameSet?: (name: string) => void;
@@ -52,11 +51,10 @@ export default function ClientNameInput({
             const oldName = getClientName();
             const newName = name.trim();
 
-            // First update the name in localStorage
+            // Update name in localStorage
             setClientName(newName);
 
-            // If this is an update (not initial setup) and we have an old name,
-            // update the name in all existing selections
+            // If updating an existing name, update it in the database too
             if (isUpdate && oldName && oldName !== newName) {
                 const response = await fetch('/api/selections', {
                     method: 'PATCH',
@@ -72,12 +70,6 @@ export default function ClientNameInput({
                 if (!response.ok) {
                     throw new Error('Failed to update name in selections');
                 }
-                
-                // Add a small delay before notifying to ensure API operation completes
-                setTimeout(() => {
-                    // Notify about the change to refresh selection lists
-                    notifySelectionChange();
-                }, 100);
             }
 
             setIsOpen(false);

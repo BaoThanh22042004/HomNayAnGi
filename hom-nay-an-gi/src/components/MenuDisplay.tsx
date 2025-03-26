@@ -6,7 +6,6 @@ import { getClientName, hasClientName, setClientName } from "@/lib/clientName";
 import ClientNameInput from "./ClientNameInput";
 import Image from "next/image";
 import { useToast } from "@/contexts/ToastContext";
-import { notifySelectionChange } from "@/lib/selectionEventBus";
 
 interface MenuDisplayProps {
     menuInfos: MenuInfos;
@@ -249,13 +248,6 @@ function DishCard({ dish, dataPath }: { dish: Dish; dataPath: string }) {
             if (isSimpleModalOpen) {
                 closeSimpleModal();
             }
-
-            // Use a small timeout before notifying about changes
-            // This helps the UI feel more responsive while reducing API call bunching
-            setTimeout(() => {
-                // Notify other components about the change
-                notifySelectionChange();
-            }, 100);
 
             // Show toast notification instead of alert
             showToast(`${dish.name} đã được thêm vào giỏ!`, 'success');

@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import { ToastProvider } from "@/contexts/ToastContext";
 import SelectedDishesWrapper from "@/components/SelectedDishesWrapper";
+import SseDebugger from "@/components/SseDebugger";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -11,15 +12,21 @@ export const metadata: Metadata = {
   description: "Ứng dụng giúp bạn chọn món ăn mỗi ngày",
 };
 
+// Use a server component for initial data prefetching
 export default function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+
   return (
     <html lang="vi">
       <head>
         <link rel="icon" href="/favicon.ico" type="image/x-icon" sizes="16x16" />
+        {/* Add meta tags to prevent aggressive caching */}
+        <meta httpEquiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+        <meta httpEquiv="Pragma" content="no-cache" />
+        <meta httpEquiv="Expires" content="0" />
       </head>
       <body className={`${inter.className} bg-gray-50 min-h-screen`}>
         <ToastProvider>
@@ -44,6 +51,9 @@ export default function RootLayout({
               &copy; {new Date().getFullYear()} Hôm Nay Ăn Gì?
             </div>
           </footer>
+
+          {/* Add the debug component at the end */}
+          {process.env.NODE_ENV !== 'production' && <SseDebugger />}
         </ToastProvider>
       </body>
     </html>
