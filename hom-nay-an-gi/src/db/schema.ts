@@ -9,5 +9,6 @@ export const selections = pgTable('selections', {
   quantity: integer('quantity').notNull().default(1),
   timestamp: integer('timestamp').notNull(),
   clientName: text('client_name').notNull(),
-  selectedOptions: jsonb('selected_options').notNull()
+  selectedOptions: jsonb('selected_options').notNull(),
+  note: text('note') // Added note field
 });
