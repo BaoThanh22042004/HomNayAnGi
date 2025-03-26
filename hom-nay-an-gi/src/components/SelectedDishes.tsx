@@ -296,7 +296,7 @@ export default function SelectedDishes() {
             {showDeleteAllModal && (
                 <div className="fixed inset-0 z-50 overflow-auto bg-black bg-opacity-50 flex">
                     <div className="relative p-6 bg-white w-full max-w-md m-auto rounded-lg">
-                        <h2 className="text-xl font-bold mb-4">Xác nhận xóa tất cả</h2>
+                        <h2 className="text-xl font-bold mb-4 text-black">Xác nhận xóa tất cả</h2>
                         <p className="mb-4 text-gray-600">
                             Bạn có chắc chắn muốn xóa tất cả món đã chọn? Hành động này không thể hoàn tác.
                         </p>
@@ -307,7 +307,7 @@ export default function SelectedDishes() {
                             </label>
                             <input
                                 type="password"
-                                className="w-full px-3 py-2 border border-gray-300 rounded-md"
+                                className="w-full px-3 py-2 border border-gray-300 rounded-md text-black"
                                 placeholder="Nhập mật khẩu để xác nhận"
                                 value={deletePassword}
                                 onChange={(e) => setDeletePassword(e.target.value)}
