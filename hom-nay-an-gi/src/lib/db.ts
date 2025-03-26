@@ -1,6 +1,5 @@
 import { sql } from '@vercel/postgres';
 import { drizzle } from 'drizzle-orm/vercel-postgres';
-import { selections } from '../db/schema';
 
 // Create and export the database connection
 export const db = drizzle(sql);
