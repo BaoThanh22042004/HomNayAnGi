@@ -43,6 +43,30 @@ export interface DishType {
 
 export type MenuInfos = DishType[];
 
+// New interface for selected dish with note
+export interface SelectedDish {
+    id: string;
+    dishId: number;
+    name: string;
+    price: number;
+    photoUrl?: string;
+    clientName: string;
+    quantity: number;
+    selectedOptions: SelectedOption[];
+    note?: string; // Add note field
+}
+
+export interface SelectedOption {
+    optionId: string;
+    optionName: string;
+    selectedItems: SelectedOptionItem[];
+}
+
+export interface SelectedOptionItem {
+    itemId: string;
+    itemName: string;
+    price: number;
+}
 
 export interface RawDishType {
     dish_type_name: string;

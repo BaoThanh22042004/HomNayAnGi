@@ -1,11 +1,11 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { SelectedDish } from '@/lib/dishSelectionStore';
 import { formatPrice } from '@/lib/utils';
 import { getClientName, subscribeToNameChanges } from '@/lib/clientName';
 import ClientNameInput from './ClientNameInput';
 import Image from 'next/image';
+import { SelectedDish } from '@/entities/menu';
 
 export default function SelectedDishes() {
     const [selections, setSelections] = useState<SelectedDish[]>([]);
@@ -13,6 +13,10 @@ export default function SelectedDishes() {
     const [error, setError] = useState<string | null>(null);
     const [currentClientName, setCurrentClientName] = useState<string | null>(null);
     const [showNameInput, setShowNameInput] = useState(false);
+    const [showDeleteAllModal, setShowDeleteAllModal] = useState(false);
+    const [deletePassword, setDeletePassword] = useState('');
+    const [deleteError, setDeleteError] = useState('');
+    const [isDeleting, setIsDeleting] = useState(false);
 
     // Function to fetch selected dishes
     const fetchSelections = async () => {
@@ -100,6 +104,42 @@ export default function SelectedDishes() {
         fetchSelections();
     };
 
+    const handleOpenDeleteAllModal = () => {
+        setShowDeleteAllModal(true);
+        setDeletePassword('');
+        setDeleteError('');
+    };
+
+    const handleCloseDeleteAllModal = () => {
+        setShowDeleteAllModal(false);
+        setDeletePassword('');
+        setDeleteError('');
+    };
+
+    const handleDeleteAll = async () => {
+        try {
+            setIsDeleting(true);
+            setDeleteError('');
+            
+            const response = await fetch(`/api/selections?deleteAll=true&password=${encodeURIComponent(deletePassword)}`, {
+                method: 'DELETE',
+            });
+
+            if (!response.ok) {
+                const data = await response.json();
+                throw new Error(data.error || `Failed to delete all selections: ${response.status}`);
+            }
+
+            // Clear selections and close modal
+            setSelections([]);
+            setShowDeleteAllModal(false);
+        } catch (err) {
+            setDeleteError(err instanceof Error ? err.message : 'Failed to delete selections. Please try again.');
+        } finally {
+            setIsDeleting(false);
+        }
+    };
+
     // Calculate total price
     const totalPrice = selections.reduce((sum, dish) => sum + dish.price * dish.quantity, 0);
 
@@ -107,9 +147,25 @@ export default function SelectedDishes() {
         <div className="bg-white shadow-md rounded-lg overflow-hidden">
             <div className="bg-red-600 text-white px-4 py-3 flex justify-between items-center">
                 <h2 className="text-lg font-bold">Món đã chọn</h2>
-                <span className="text-sm bg-white text-red-600 px-2 py-1 rounded-full">
-                    {selections.length} món
-                </span>
+                <div className="flex space-x-2">
+                    {selections.length > 0 && (
+                        <button
+                            onClick={handleOpenDeleteAllModal}
+                            className="text-white bg-red-700 hover:bg-red-800 px-2 py-1 rounded text-sm flex items-center"
+                            title="Xóa tất cả món đã chọn"
+                        >
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="mr-1">
+                                <path d="M3 6h18"></path>
+                                <path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"></path>
+                                <path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"></path>
+                            </svg>
+                            Xóa tất cả
+                        </button>
+                    )}
+                    <span className="text-sm bg-white text-red-600 px-2 py-1 rounded-full">
+                        {selections.length} món
+                    </span>
+                </div>
             </div>
 
             {/* Show current user info */}
@@ -184,6 +240,13 @@ export default function SelectedDishes() {
                                                 ))}
                                             </div>
                                         )}
+
+                                        {selection.note && (
+                                            <div className="mt-1 text-sm text-gray-500">
+                                                <span className="font-medium">Ghi chú:</span>{' '}
+                                                {selection.note}
+                                            </div>
+                                        )}
                                     </div>
 
                                     {/* Only allow users to remove their own selections */}
@@ -218,6 +281,50 @@ export default function SelectedDishes() {
                     initialName={currentClientName || ''}
                     isUpdate={true}
                 />
+            )}
+
+            {showDeleteAllModal && (
+                <div className="fixed inset-0 z-50 overflow-auto bg-black bg-opacity-50 flex">
+                    <div className="relative p-6 bg-white w-full max-w-md m-auto rounded-lg">
+                        <h2 className="text-xl font-bold mb-4">Xác nhận xóa tất cả</h2>
+                        <p className="mb-4 text-gray-600">
+                            Bạn có chắc chắn muốn xóa tất cả món đã chọn? Hành động này không thể hoàn tác.
+                        </p>
+                        
+                        <div className="mb-4">
+                            <label className="block text-sm font-medium text-gray-700 mb-2">
+                                Mật khẩu xác nhận
+                            </label>
+                            <input
+                                type="password"
+                                className="w-full px-3 py-2 border border-gray-300 rounded-md"
+                                placeholder="Nhập mật khẩu để xác nhận"
+                                value={deletePassword}
+                                onChange={(e) => setDeletePassword(e.target.value)}
+                            />
+                        </div>
+                        
+                        {deleteError && (
+                            <div className="mb-4 text-red-500 text-sm">{deleteError}</div>
+                        )}
+                        
+                        <div className="flex justify-end">
+                            <button
+                                onClick={handleCloseDeleteAllModal}
+                                className="mr-2 px-4 py-2 text-gray-600 hover:text-gray-800"
+                            >
+                                Hủy
+                            </button>
+                            <button
+                                onClick={handleDeleteAll}
+                                className="px-4 py-2 bg-red-600 text-white rounded hover:bg-red-700"
+                                disabled={isDeleting || !deletePassword}
+                            >
+                                {isDeleting ? 'Đang xử lý...' : 'Xóa tất cả'}
+                            </button>
+                        </div>
+                    </div>
+                </div>
             )}
         </div>
     );

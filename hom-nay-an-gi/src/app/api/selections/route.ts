@@ -20,7 +20,7 @@ export async function GET() {
 export async function POST(request: NextRequest) {
     try {
         const body = await request.json();
-        const { dataPath, dishId, clientName, selectedOptions = [], quantity = 1 } = body;
+        const { dataPath, dishId, clientName, selectedOptions = [], quantity = 1, note = "" } = body;
 
         if (!dataPath || !dishId || !clientName) {
             return NextResponse.json(
@@ -53,7 +53,8 @@ export async function POST(request: NextRequest) {
             targetDish,
             clientName,
             selectedOptions,
-            quantity
+            quantity,
+            note // Pass note to the store
         );
 
         return NextResponse.json(selection);
@@ -72,6 +73,22 @@ export async function DELETE(request: NextRequest) {
         const { searchParams } = new URL(request.url);
         const id = searchParams.get('id');
         const clientName = searchParams.get('clientName');
+        const password = searchParams.get('password');
+        const deleteAll = searchParams.get('deleteAll') === 'true';
+
+        if (deleteAll) {
+            // Validate password for delete all operation
+            const expectedPassword = process.env.ADMIN_PASSWORD || 'HomNayAnGi';
+            if (password !== expectedPassword) {
+                return NextResponse.json(
+                    { error: "Sai mật khẩu" },
+                    { status: 403 }
+                );
+            }
+            
+            await dishSelectionStore.removeAllSelections();
+            return NextResponse.json({ success: true });
+        }
 
         if (!id) {
             return NextResponse.json(

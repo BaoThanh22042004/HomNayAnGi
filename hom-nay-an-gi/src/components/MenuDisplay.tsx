@@ -1,9 +1,7 @@
 'use client';
 
-import { MenuInfos, DishType, Dish } from "@/entities/menu";
+import { MenuInfos, DishType, Dish, SelectedOption } from "@/entities/menu";
 import { useState, useEffect } from "react";
-import { formatPrice } from "@/lib/utils";
-import { SelectedOption } from "@/lib/dishSelectionStore";
 import { getClientName, hasClientName, setClientName } from "@/lib/clientName";
 import ClientNameInput from "./ClientNameInput";
 import Image from "next/image";
@@ -50,9 +48,11 @@ function DishCard({ dish, dataPath }: { dish: Dish; dataPath: string }) {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [selectedOptionItems, setSelectedOptionItems] = useState<Map<string, string[]>>(new Map());
     const [quantity, setQuantity] = useState(1);
+    const [note, setNote] = useState('');
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [error, setError] = useState<string | null>(null);
     const [isNameInputOpen, setIsNameInputOpen] = useState(false);
+    const [isSimpleModalOpen, setIsSimpleModalOpen] = useState(false);
 
     useEffect(() => {
         // Try to get client name from localStorage on component mount
@@ -96,8 +96,10 @@ function DishCard({ dish, dataPath }: { dish: Dish; dataPath: string }) {
 
             setSelectedOptionItems(initialSelections);
         } else {
-            // If no options, add directly
-            await addToSelections();
+            // If no options, show a simple modal for quantity and notes
+            setQuantity(1);
+            setNote('');
+            setIsSimpleModalOpen(true);
         }
     };
 
@@ -109,14 +111,22 @@ function DishCard({ dish, dataPath }: { dish: Dish; dataPath: string }) {
         if (hasOptions) {
             setIsModalOpen(true);
         } else {
-            addToSelections();
+            setIsSimpleModalOpen(true);
         }
     };
 
-    const closeModal = () => {
+    const closeOptionsModal = () => {
         setIsModalOpen(false);
         setSelectedOptionItems(new Map());
         setQuantity(1);
+        setNote('');
+        setError(null);
+    };
+
+    const closeSimpleModal = () => {
+        setIsSimpleModalOpen(false);
+        setQuantity(1);
+        setNote('');
         setError(null);
     };
 
@@ -164,12 +174,12 @@ function DishCard({ dish, dataPath }: { dish: Dish; dataPath: string }) {
         return true;
     };
 
-    const addToSelections = async () => {
+    const addToSelections = async (fromSimpleModal = false) => {
         try {
             setIsSubmitting(true);
             setError(null);
 
-            if (hasOptions && !validateSelections()) {
+            if (hasOptions && !fromSimpleModal && !validateSelections()) {
                 setIsSubmitting(false);
                 return;
             }
@@ -188,7 +198,7 @@ function DishCard({ dish, dataPath }: { dish: Dish; dataPath: string }) {
             const selectedOptions: SelectedOption[] = [];
 
             // Only process options if we have them
-            if (hasOptions) {
+            if (hasOptions && !fromSimpleModal) {
                 dish.options.forEach(option => {
                     const selectedItemNames = selectedOptionItems.get(option.name) || [];
                     if (selectedItemNames.length > 0) {
@@ -220,7 +230,8 @@ function DishCard({ dish, dataPath }: { dish: Dish; dataPath: string }) {
                     dishId: dish.id,
                     clientName: currentClientName, // Using the fresh client name
                     selectedOptions,
-                    quantity
+                    quantity,
+                    note
                 }),
             });
 
@@ -230,7 +241,10 @@ function DishCard({ dish, dataPath }: { dish: Dish; dataPath: string }) {
 
             // Close modal if open
             if (isModalOpen) {
-                closeModal();
+                closeOptionsModal();
+            }
+            if (isSimpleModalOpen) {
+                closeSimpleModal();
             }
 
             // Show temporary success message
@@ -241,6 +255,12 @@ function DishCard({ dish, dataPath }: { dish: Dish; dataPath: string }) {
             setError('Failed to add selection. Please try again.');
         } finally {
             setIsSubmitting(false);
+        }
+    };
+
+    const handleQuantityChange = (newQuantity: number) => {
+        if (newQuantity >= 1) {
+            setQuantity(newQuantity);
         }
     };
 
@@ -262,141 +282,232 @@ function DishCard({ dish, dataPath }: { dish: Dish; dataPath: string }) {
                 <div className="p-4">
                     <h3 className="text-lg font-semibold mb-1 text-black">{dish.name}</h3>
                     {dish.description && (
-                        <p className="text-sm text-gray-600 mb-2">{dish.description}</p>
+                        <p className="text-gray-600 text-sm mb-2">{dish.description}</p>
                     )}
-                    <div className="flex justify-between items-center">
-                        <div className="text-red-600 font-medium">
+                    <div className="flex justify-between items-center mb-2">
+                        <div className="text-red-600 font-semibold">
                             {dish.discount_price ? (
-                                <div>
-                                    <span className="line-through text-gray-400 mr-2">
+                                <>
+                                    <span>{dish.discount_price.text}</span>
+                                    <span className="text-gray-400 line-through text-sm ml-2">
                                         {dish.price.text}
                                     </span>
-                                    <span>{dish.discount_price.text}</span>
-                                </div>
+                                </>
                             ) : (
                                 <span>{dish.price.text}</span>
                             )}
                         </div>
                         <button
                             onClick={handleSelect}
-                            className="px-3 py-1 bg-red-600 text-white rounded-md hover:bg-red-700 transition-colors"
+                            className="bg-red-600 text-white px-4 py-1 rounded hover:bg-red-700 text-sm"
                         >
                             Chọn
                         </button>
                     </div>
-                    {hasOptions && (
-                        <div className="mt-2 text-xs text-gray-500">
-                            Có tùy chọn thêm
-                        </div>
-                    )}
                 </div>
             </div>
 
-            {/* Client Name Input Modal */}
             {isNameInputOpen && (
                 <ClientNameInput onNameSet={handleNameSet} />
             )}
 
-            {/* Option Selection Modal */}
+            {/* Modal for dishes with options */}
             {isModalOpen && (
-                <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-                    <div className="bg-white rounded-lg max-w-md w-full max-h-[80vh] overflow-auto">
-                        <div className="p-4 border-b sticky top-0 bg-white z-10">
-                            <div className="flex justify-between items-center">
-                                <h3 className="text-lg font-bold text-black">{dish.name}</h3>
+                <div className="fixed inset-0 z-50 overflow-auto bg-black bg-opacity-50 flex">
+                    <div className="relative p-4 bg-white w-full max-w-md m-auto rounded-lg max-h-[90vh] overflow-y-auto">
+                        <button
+                            className="absolute top-2 right-2 text-gray-500 hover:text-gray-700"
+                            onClick={closeOptionsModal}
+                        >
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                                <path d="M18 6 6 18M6 6l12 12"></path>
+                            </svg>
+                        </button>
+
+                        <h2 className="text-xl font-bold mb-4 text-gray-800">{dish.name}</h2>
+
+                        {/* Quantity selector */}
+                        <div className="mb-4">
+                            <label className="block text-sm font-medium text-gray-700 mb-2">
+                                Số lượng
+                            </label>
+                            <div className="flex items-center">
                                 <button
-                                    onClick={closeModal}
-                                    className="text-gray-500 hover:text-gray-700"
+                                    className="px-3 py-1 border border-gray-300 rounded-l text-gray-800"
+                                    onClick={() => handleQuantityChange(quantity - 1)}
+                                    disabled={quantity <= 1}
                                 >
-                                    <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                                    </svg>
+                                    -
                                 </button>
-                            </div>
-                            <div className="text-red-600 font-medium">
-                                {dish.discount_price ? dish.discount_price.text : dish.price.text}
+                                <input
+                                    type="number"
+                                    min="1"
+                                    value={quantity}
+                                    onChange={(e) => handleQuantityChange(parseInt(e.target.value) || 1)}
+                                    className="w-16 text-center border-t border-b border-gray-300 py-1 text-gray-800"
+                                />
+                                <button
+                                    className="px-3 py-1 border border-gray-300 rounded-r text-gray-800"
+                                    onClick={() => handleQuantityChange(quantity + 1)}
+                                >
+                                    +
+                                </button>
                             </div>
                         </div>
 
-                        <div className="p-4">
-                            {dish.options.map((option, optionIndex) => (
-                                <div key={optionIndex} className="mb-4">
-                                    <h4 className="font-medium mb-2 text-black">
-                                        {option.name}
-                                        {option.min_select > 0 && (
-                                            <span className="text-red-600 ml-1 text-sm">
-                                                *Bắt buộc (Chọn {option.min_select}-{option.max_select})
+                        {dish.options.map((option, optionIndex) => (
+                            <div key={optionIndex} className="mb-4">
+                                <h3 className="font-medium mb-2 text-gray-800">
+                                    {option.name}{' '}
+                                    <span className="text-sm text-gray-800">
+                                        {option.min_select > 0
+                                            ? `(Chọn ít nhất ${option.min_select})`
+                                            : option.max_select === 1
+                                                ? '(Chọn 1)'
+                                                : `(Chọn tối đa ${option.max_select})`}
+                                    </span>
+                                </h3>
+                                <div className="space-y-2">
+                                    {option.items.map((item, itemIndex) => (
+                                        <div key={itemIndex} className="flex items-center">
+                                            <input
+                                                type={option.max_select === 1 ? 'radio' : 'checkbox'}
+                                                id={`${option.name}-${item.name}`}
+                                                name={option.name}
+                                                checked={(selectedOptionItems.get(option.name) || []).includes(item.name)}
+                                                onChange={(e) => handleOptionChange(option.name, item.name, e.target.checked, option.max_select)}
+                                                className="mr-2"
+                                            />
+                                            <label
+                                                htmlFor={`${option.name}-${item.name}`}
+                                                className="flex-1 text-gray-800"
+                                            >
+                                                {item.name}
+                                            </label>
+                                            <span className="text-red-600">
+                                                {item.price.value > 0 ? `+${item.price.text}` : ''}
                                             </span>
-                                        )}
-                                    </h4>
-                                    <div className="space-y-2">
-                                        {option.items.map((item, itemIndex) => {
-                                            const isSelected = (selectedOptionItems.get(option.name) || []).includes(item.name);
-                                            return (
-                                                <div key={itemIndex} className="flex items-center">
-                                                    <input
-                                                        type={option.max_select === 1 ? "radio" : "checkbox"}
-                                                        id={`${option.name}-${item.name}-${itemIndex}`}
-                                                        name={option.name}
-                                                        checked={isSelected}
-                                                        onChange={(e) => handleOptionChange(option.name, item.name, e.target.checked, option.max_select)}
-                                                        className="mr-2"
-                                                    />
-                                                    <label
-                                                        htmlFor={`${option.name}-${item.name}-${itemIndex}`}
-                                                        className={`flex justify-between w-full text-black ${isSelected ? 'font-medium' : ''}`}
-                                                    >
-                                                        <span>{item.name}</span>
-                                                        {item.price.value > 0 && (
-                                                            <span className="text-gray-600">
-                                                                +{formatPrice(item.price.value)}
-                                                            </span>
-                                                        )}
-                                                    </label>
-                                                </div>
-                                            );
-                                        })}
-                                    </div>
-                                </div>
-                            ))}
-
-                            <div className="mb-4">
-                                <h4 className="font-medium mb-2 text-black">Số lượng</h4>
-                                <div className="flex items-center text-black">
-                                    <button
-                                        onClick={() => setQuantity(prev => Math.max(1, prev - 1))}
-                                        className="px-2 border rounded-l"
-                                    >
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" className="w-4"><path d="M5 12h14" /></svg>
-                                    </button>
-                                    <input
-                                        type="number"
-                                        min="1"
-                                        value={quantity}
-                                        onChange={(e) => setQuantity(Math.max(1, parseInt(e.target.value) || 1))}
-                                        className="w-12 text-center border-t border-b"
-                                    />
-                                    <button
-                                        onClick={() => setQuantity(prev => prev + 1)}
-                                        className="px-2 border rounded-r"
-                                    >
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" className="w-4"><path d="M5 12h14" /><path d="M12 5v14" /></svg>
-                                    </button>
+                                        </div>
+                                    ))}
                                 </div>
                             </div>
+                        ))}
 
-                            {error && (
-                                <div className="text-red-500 text-sm mb-4">
-                                    {error}
-                                </div>
-                            )}
+                        {/* Note input */}
+                        <div className="mb-4">
+                            <label className="block text-sm font-medium text-gray-700 mb-2">
+                                Ghi chú
+                            </label>
+                            <textarea
+                                className="w-full px-3 py-2 border border-gray-300 rounded-md text-gray-800"
+                                rows={3}
+                                placeholder="Ghi chú về món ăn (tùy chọn)"
+                                value={note}
+                                onChange={(e) => setNote(e.target.value)}
+                            ></textarea>
+                        </div>
 
+                        {error && (
+                            <div className="mb-4 text-red-500">{error}</div>
+                        )}
+
+                        <div className="flex justify-end">
                             <button
-                                onClick={addToSelections}
-                                disabled={isSubmitting}
-                                className="w-full py-2 bg-red-600 text-white rounded hover:bg-red-700 disabled:opacity-50"
+                                onClick={closeOptionsModal}
+                                className="mr-2 px-4 py-2 text-gray-600 hover:text-gray-800"
                             >
-                                {isSubmitting ? 'Đang thêm...' : 'Thêm món này'}
+                                Hủy
+                            </button>
+                            <button
+                                onClick={() => addToSelections(false)}
+                                className="px-4 py-2 bg-red-600 text-white rounded hover:bg-red-700"
+                                disabled={isSubmitting}
+                            >
+                                {isSubmitting ? 'Đang xử lý...' : 'Thêm vào giỏ'}
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            )}
+
+            {/* Simple modal for dishes without options */}
+            {isSimpleModalOpen && (
+                <div className="fixed inset-0 z-50 overflow-auto bg-black bg-opacity-50 flex">
+                    <div className="relative p-4 bg-white w-full max-w-md m-auto rounded-lg">
+                        <button
+                            className="absolute top-2 right-2 text-gray-500 hover:text-gray-700"
+                            onClick={closeSimpleModal}
+                        >
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                                <path d="M18 6 6 18M6 6l12 12"></path>
+                            </svg>
+                        </button>
+
+                        <h2 className="text-xl font-bold mb-4 text-gray-800">{dish.name}</h2>
+                        <p className="text-gray-600 mb-4">
+                            {dish.price.text}
+                        </p>
+
+                        {/* Quantity selector */}
+                        <div className="mb-4">
+                            <label className="block text-sm font-medium text-gray-700 mb-2">
+                                Số lượng
+                            </label>
+                            <div className="flex items-center">
+                                <button
+                                    className="px-3 py-1 border border-gray-300 rounded-l text-gray-800"
+                                    onClick={() => handleQuantityChange(quantity - 1)}
+                                    disabled={quantity <= 1}
+                                >
+                                    -
+                                </button>
+                                <input
+                                    type="number"
+                                    min="1"
+                                    value={quantity}
+                                    onChange={(e) => handleQuantityChange(parseInt(e.target.value) || 1)}
+                                    className="w-16 text-center border-t border-b border-gray-300 py-1 text-gray-800"
+                                />
+                                <button
+                                    className="px-3 py-1 border border-gray-300 rounded-r text-gray-800"
+                                    onClick={() => handleQuantityChange(quantity + 1)}
+                                >
+                                    +
+                                </button>
+                            </div>
+                        </div>
+
+                        {/* Note input */}
+                        <div className="mb-4">
+                            <label className="block text-sm font-medium text-gray-700 mb-2">
+                                Ghi chú
+                            </label>
+                            <textarea
+                                className="w-full px-3 py-2 border border-gray-300 rounded-md text-gray-800"
+                                rows={3}
+                                placeholder="Ghi chú về món ăn (tùy chọn)"
+                                value={note}
+                                onChange={(e) => setNote(e.target.value)}
+                            ></textarea>
+                        </div>
+
+                        {error && (
+                            <div className="mb-4 text-red-500">{error}</div>
+                        )}
+
+                        <div className="flex justify-end">
+                            <button
+                                onClick={closeSimpleModal}
+                                className="mr-2 px-4 py-2 text-gray-600 hover:text-gray-800"
+                            >
+                                Hủy
+                            </button>
+                            <button
+                                onClick={() => addToSelections(true)}
+                                className="px-4 py-2 bg-red-600 text-white rounded hover:bg-red-700"
+                                disabled={isSubmitting}
+                            >
+                                {isSubmitting ? 'Đang xử lý...' : 'Thêm vào giỏ'}
                             </button>
                         </div>
                     </div>
