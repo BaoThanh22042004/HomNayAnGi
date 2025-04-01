@@ -27,7 +27,7 @@ export async function GET(request: NextRequest) {
     // Nếu không có data_path, trả về menu.json mặc định
     if (!data_path) {
       const filePath = path.join(process.cwd(), "src", "data", "menu.json");
-      const jsonData = await fs.readFileSync(filePath, { encoding: "utf8" });
+      const jsonData = fs.readFileSync(filePath, { encoding: "utf8" });
       const data = JSON.parse(jsonData).eateries as Eatery[];
       return createJsonResponse(data);
     }
@@ -38,7 +38,7 @@ export async function GET(request: NextRequest) {
     }
     
     const filePath = path.join(process.cwd(), "src", "data", data_path+".json");
-    const jsonData = await fs.readFileSync(filePath, { encoding: "utf8" });
+    const jsonData = fs.readFileSync(filePath, { encoding: "utf8" });
     const parsedData = JSON.parse(jsonData);
     
     if (!parsedData.menu_infos) {
