@@ -11,6 +11,10 @@
         {
             "name": "Cơm Gà Lê Trang - Quang Trung",
             "data_path": "comGaLeTrang"
+        },
+        {
+            "name": "Cơm Phần Út Trinh",
+            "data_path": "comPhanUtTrinh"
         }
     ]
 }
