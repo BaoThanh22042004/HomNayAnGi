@@ -9,6 +9,10 @@ const createJsonResponse = <T>(data: T) => {
   return new Response(JSON.stringify(data), {
     headers: {
       "content-type": "application/json",
+      "Cache-Control": "no-store, no-cache, must-revalidate, proxy-revalidate",
+      "Pragma": "no-cache",
+      "Expires": "0",
+      "Surrogate-Control": "no-store"
     },
   });
 };
@@ -34,7 +38,15 @@ export async function GET(request: NextRequest) {
     
     // Kiểm tra path an toàn
     if (!isValidPath(data_path)) {
-      return new Response("Invalid path", { status: 400 });
+      return new Response("Invalid path", { 
+        status: 400,
+        headers: {
+          "Cache-Control": "no-store, no-cache, must-revalidate, proxy-revalidate",
+          "Pragma": "no-cache",
+          "Expires": "0",
+          "Surrogate-Control": "no-store"
+        }
+      });
     }
     
     const filePath = path.join(process.cwd(), "src", "data", data_path+".json");
@@ -42,7 +54,15 @@ export async function GET(request: NextRequest) {
     const parsedData = JSON.parse(jsonData);
     
     if (!parsedData.menu_infos) {
-      return new Response("Invalid menu data format", { status: 400 });
+      return new Response("Invalid menu data format", { 
+        status: 400,
+        headers: {
+          "Cache-Control": "no-store, no-cache, must-revalidate, proxy-revalidate",
+          "Pragma": "no-cache",
+          "Expires": "0",
+          "Surrogate-Control": "no-store"
+        }
+      });
     }
     
     const data = parsedData.menu_infos as RawDishType[];
@@ -52,7 +72,16 @@ export async function GET(request: NextRequest) {
     console.error("Error processing menu request:", error);
     return new Response(
       JSON.stringify({ error: "Failed to load menu data" }), 
-      { status: 500, headers: { "content-type": "application/json" } }
+      { 
+        status: 500, 
+        headers: { 
+          "content-type": "application/json",
+          "Cache-Control": "no-store, no-cache, must-revalidate, proxy-revalidate",
+          "Pragma": "no-cache",
+          "Expires": "0",
+          "Surrogate-Control": "no-store"
+        } 
+      }
     );
   }
 }
